@@ -1,7 +1,8 @@
 footer {
   ul {
     li {
-      padding-top: 1rem;
+      padding-top: 1.6rem;
+      font-weight: 500;
     }
     li:first-child {
       padding-top: 0;
@@ -18,9 +19,9 @@ footer {
     padding-bottom: 2px;
   }
   .footer-bottom {
-    padding-top: 7.5rem;
+    padding-top: 12rem;
   }
-  .left-column {
-    gap: 4.5rem;
-  }
+  // .left-column {
+  //   gap: 4.5rem;
+  // }
 }

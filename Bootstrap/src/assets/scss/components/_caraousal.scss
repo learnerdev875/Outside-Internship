@@ -14,4 +14,9 @@
   &-indicators {
     z-index: 5;
   }
+  &-indicators {
+    button {
+      border-radius: 50%;
+    }
+  }
 }
