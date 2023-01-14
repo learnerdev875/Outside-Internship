@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+:root{
+    --bg-blue:#7DD0ED;
+    --color-text:#5F5F5F;
+    --range-color:#E9EDEF;
+    --fs-heading:32px;
+    --fs-price:64px;
+    --fs-subscription:24px;
+    --fs-list:11px;
+    --fs-usage:30px;
+    --bg-color:#E9EDEF;
+    --hovered-color:#28A7D2;
+    --hovered-title:#27A6D2;
+}
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+body,ul{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: var(--bg-color);
+    font-family: 'Open Sans', sans-serif;
+}
+.plans{
+    max-width: 866px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 28px;
+    padding-top:106px;
+    padding-bottom: 88px;
+    row-gap: 107px;
+}
+li{
+    list-style: none;
+}
+.plan__card{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.plan__title{
+    background-color: var(--bg-blue);
+    font-size: var(--fs-heading);
+    font-weight: 700;
+    color:#fff;
+    text-align: center;
+}
+.plan__price{
+    font-size: var(--fs-price);
+    font-weight: 700;
+    display: block;
+}
+.plan__duration{
+    font-size:var(--fs-subscription);
+    font-weight: 400;
+}
+li{
+    font-size: var(--fs-list);
+    font-weight: 400px;
+}
+.plan__body{
+    color:var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap:32px;
+    padding-block:60px;
+}
+.plan__subscription{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.plan__features{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:9px;
+}
+.usage{
+    grid-column: 1/4;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap:41px;
+    padding:31px 34px;
+    border-radius: 5px;
+}
+.usage__users,.usage__memory,.usage__projects{
+    display: flex;
+    justify-content: space-between;
+}
+.usage__range{
+    width:100%;
+    height: 10px;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.plan__card:hover .plan__title{
+    background-color: var(--hovered-title);
+}
+.plan__card:hover .plan__subscription{
+    color:var(--hovered-color)
+}
+.plan__card:hover{
+    transform: scale(1.1);
+}
+.usage__show{
+    height:100%;
+    border-radius: 10px;
+    background-color: var(--bg-blue);
+    visibility: hidden;
+}
+/* first plan */
+.plan__card:first-child:hover ~ .usage .usage__range__users{
+    width:20%;
+    visibility: visible;
+}
+.plan__card:first-child:hover ~ .usage .usage__range__memory{
+    width:40%;
+    visibility: visible;
+}
+.plan__card:first-child:hover ~ .usage .usage__range__projects{
+    width:25%;
+    visibility: visible;
+}
+/* second plan */
+.plan__card:nth-child(2):hover ~ .usage .usage__range__users{
+    width:50%;
+    visibility: visible;
+}
+.plan__card:nth-child(2):hover ~ .usage .usage__range__memory{
+    width:60%;
+    visibility: visible;
+}
+.plan__card:nth-child(2):hover ~ .usage .usage__range__projects{
+    width:45%;
+    visibility: visible;
+}
+/* third plan */
+.plan__card:nth-child(3):hover ~ .usage .usage__range__users{
+    width:100%;
+    visibility: visible;
+}
+.plan__card:nth-child(3):hover ~ .usage .usage__range__memory{
+    width:100%;
+    visibility: visible;
+}
+.plan__card:nth-child(3):hover ~ .usage .usage__range__projects{
+    width:100%;
+    visibility: visible;
+}
+
+
+
+
+
+
+
+

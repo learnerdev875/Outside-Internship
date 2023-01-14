@@ -1,0 +1,60 @@
+@use "../utils" as b;
+//placeholder
+%widget {
+  padding: b.rem(16);
+}
+
+//helper or utility classes => research
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: b.rem(40);
+  // max-width: 1000px;
+  width: min(
+    100% - 40px,
+    b.rem(1000)
+  ); // this adds padding of 20px equally on both sides without actually using padding.
+  margin-inline: auto;
+  // padding-inline:20px; add padding to left and right in mobile view
+
+  //using mixin named breakpoint. large is the key of a map item
+  @include b.breakpoint(large) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    // padding-inline:0; in desktop, we have to reset it to 0 so the width takes up 1000px .
+  }
+
+  &__main,
+  &__sidebar {
+    padding: b.rem(40);
+  }
+  &__main {
+    background-color: hsl(240, 90%, 51%);
+  }
+
+  &__sidebar {
+    // @media (max-width: 56.25em) {
+    //   text-align: center;
+    // }
+    @include b.breakpoint-down(medium) {
+      text-align: center;
+    }
+  }
+  &__widget {
+    $widget: &;
+    background-color: hsl(300, 91%, 37%);
+    padding: b.rem(16);
+    &--green {
+      //@extend .grid__widget; // copies the rule of element and in html we dont have to write element class as well as modifier
+      // @extend #{$widget}; // sass interpolation
+      @extend %widget;
+      background-color: hsl(120, 92%, 23%);
+    }
+  }
+}
+
+//block is a standalone component
+//element are chid items of block
+//modifier are alternate version of either block or elements
+//css stands for cascading style sheet and when the selectors have same specifity, the later rule will override the previous. The media query must be used in increasing order for min-widths.

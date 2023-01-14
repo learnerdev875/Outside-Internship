@@ -1,0 +1,23 @@
+@use "../utils" as u;
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: u.$white;
+  font-family: u.$font;
+  color: u.$black;
+}
+figure {
+  margin: 0;
+  padding: 0;
+}

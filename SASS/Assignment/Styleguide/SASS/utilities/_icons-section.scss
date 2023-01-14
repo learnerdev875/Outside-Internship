@@ -1,0 +1,10 @@
+@use "../abstracts/" as a;
+.icons {
+  padding-block: a.rem(100);
+  border-bottom: 1px solid a.$black;
+  &__list {
+    display: flex;
+    gap: a.rem(20);
+    padding: a.rem(8);
+  }
+}

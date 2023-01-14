@@ -1,0 +1,20 @@
+.contact-us {
+  &__container {
+    background-image: url("/src/assets/images/contact-us.png");
+    background-size: cover;
+  }
+  .row {
+    padding: 120px 0 40px 0;
+  }
+  &__title {
+    font-size: 80px;
+    padding-bottom: 24px;
+  }
+  &__content {
+    font-size: 17px;
+    padding-bottom: 106px;
+  }
+  &__button {
+    font-size: 16px;
+  }
+}

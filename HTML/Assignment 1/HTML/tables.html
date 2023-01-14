@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+    <link rel="stylesheet" href="../CSS/tables.css">
+</head>
+<body>
+    <header>
+        <h1>HTML Learning</h1>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About us</li>
+                <li>Support</li>
+                <li>Gallery</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="heading">
+                <h1>Playing HTML Table</h1>
+        </section>
+        <section class="grocery">
+            <table class="grocery-table">
+                <tr>
+                    <th colspan="3">Grocery Items Bill</th>
+                </tr>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Potatoes</td>
+                    <td>50</td>
+                    <td>NRS. 500.00</td>
+                </tr>
+                <tr>
+                    <td>Nuts and other stuffs</td>
+                    <td>100</td>
+                    <td>NRS. 1400.00</td>
+                </tr>
+                <tr>
+                    <td>Green and Red Onions</td>
+                    <td>30</td>
+                    <td>NRS. 2500.00</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Total Price:</td>
+                    <td>NRS. 3400.00</td>
+                </tr>
+            </table>
+        </section>
+        <section class="seminar">
+            <table class="seminar-table" border="1">
+                <tr>
+                    <th colspan="3">Seminar</th>
+                </tr>
+                <tr>
+                    <th>Day</th>
+                    <th colspan="2">Schedule</th>
+                </tr>
+                <tr>
+                    <td rowspan="2">Monday</td>
+                    <td>07:00AM</td>
+                    <td>11:00AM</td>
+                </tr>
+                <tr>
+                    <td>4:00PM</td>
+                    <td>08:00PM</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Tuesday</td>
+                    <td>06:00AM</td>
+                    <td>10:00AM</td>
+                </tr>
+                <tr>
+                    <td>03:00PM</td>
+                    <td>11:00PM</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy;Copyright. End of my first project</p>
+    </footer>
+</body>
+</html>

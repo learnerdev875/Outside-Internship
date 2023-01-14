@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+}
+.assignments {
+  display: grid;
+  margin-top: 10rem;
+  place-items: center;
+  gap: 2rem;
+}
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.assignments__links {
+  background-color: cadetblue;
+  color: white;
+  font-size: 2rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+.assignment__name {
+  font-size: 3rem;
+  align-self: center;
+}
+.assignment {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.assignment__card {
+  border: 0.2rem solid black;
+  padding: 2rem;
+  width: 20rem;
+  margin-left: 2rem;
+}
+.assignment__card__link--demo {
+  background-color: cadetblue;
+  color: white;
+  padding: 0.5rem;
+}
+.assignment__card__number {
+  padding-bottom: 1rem;
+  font-size: 2rem;
+}

@@ -1,0 +1,5 @@
+@use "../abstracts/" as a;
+.container {
+  max-width: a.rem(1019);
+  margin: a.rem(80) auto;
+}
