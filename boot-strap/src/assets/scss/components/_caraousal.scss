@@ -1,0 +1,22 @@
+.carousel {
+  position: relative;
+  &-item::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 1;
+  }
+  &-caption {
+    z-index: 4;
+  }
+  &-indicators {
+    z-index: 5;
+  }
+  &-indicators {
+    button {
+      border-radius: 50%;
+    }
+  }
+}
