@@ -1,0 +1,4 @@
+@use "./functions" as a;
+$font: "Poppins", sans-serif;
+
+$font-sizes: (a.rem(100), a.rem(40), a.rem(20));

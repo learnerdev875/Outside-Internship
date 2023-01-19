@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+header{
+    padding-bottom: 17px;
+    border-bottom: 1px solid black;
+}
+header > h1{
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 34px;
+padding-bottom: 13px;
+}
+.heading{
+font-weight: 700;
+font-size: 50px;
+line-height: 88px;
+padding:56px 0;
+border-bottom: 1px solid black;
+}
+body{
+    padding:50px 165px;
+}
+nav ul li{
+    display: inline-block;
+    color:blue;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    margin-right: 24px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap:56px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.form{
+    padding:56px 0;
+}
+.title{
+    padding-bottom: 56px;
+}
+.input-box{
+    height:46px;
+    width:400px;
+}
+.input{
+    width: 633px;
+}
+.birthday-input{
+    width: 388px;
+    display: flex;
+    gap:165px;
+}
+.gender-input{
+    width: 436px;
+}
+.options label{
+    margin-right:35px;
+}
+.textarea{
+    display: flex;
+    justify-content: space-between;
+}
+.btn{
+    background-color:#838383;
+    color:#ffffff;
+    font-size: 20px;
+    padding:8px 23px;
+    border: none;
+}
+footer{
+    border-top: 1px solid black ;
+    padding: 20px 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}

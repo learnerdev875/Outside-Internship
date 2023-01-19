@@ -1,0 +1,7 @@
+@use "../globals/colors" as c;
+
+//mixin for hover effect
+@mixin hover {
+  background-color: c.$army-green;
+  transition: background-color 0.1s ease-in;
+}

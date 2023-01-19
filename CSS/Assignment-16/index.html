@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>News homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <header class="header">
+    <div class="header__logo">
+      <img src="assets/images/logo.svg" alt="News Company Logo">
+    </div>
+    <input type="checkbox" class="header__menu-open-checkbox" id="header__menu-open-checkbox">
+    <label for="header__menu-open-checkbox" class="header__menu-open-checkbox__label">
+    <img src="assets/images/icon-menu.svg" alt="Menu icon">
+    </label>
+  <nav class="header__nav-container">
+   
+      <img src="assets/images/icon-menu-close.svg" alt="Menu Close icon" class="header__menu-close-image">
+      <ul class="header__nav-list">
+        <li class="header__nav-item">Home</li>
+        <li class="header__nav-item">New</li>
+        <li class="header__nav-item">Popular</li>
+        <li class="header__nav-item">Trending</li>
+        <li class="header__nav-item">Categories</li>
+      </ul>
+    </nav>
+    
+  </header>
+  <main>
+    <section class="hero">
+      <!-- By default the image is mobile version. when the width surprasses 768px then automatically desktop version will be displayed -->
+      <picture class="hero__image">
+        <source media="(min-width: 768px )" srcset="assets/images/image-web-3-desktop.jpg">
+        <img src="assets/images/image-web-3-mobile.jpg" alt="">
+      </picture>
+      <div class="hero__content">
+        <h1 class="hero__title">
+          The Bright Future of Web 3.0?
+        </h1>
+        <div class="hero__content__all">
+          <p class="hero__body">
+            We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people.
+            But is it really fulfilling its promise?
+          </p>
+          <button class="button">Read more</button>
+        </div>
+      </div>
+    </section>
+    <section class="new-news">
+      <h2 class="new-news__title">New</h2>
+      <article class="new-news__content">
+        <h3 class="new-news__content__title">
+          Hydrogen VS Electric Cars
+        </h3>
+        <p class="new-news__content__body">
+          Will hydrogen-fueled cars ever catch up to EVs?
+        </p>
+      </article>
+      <article class="new-news__content">
+        <h3 class="new-news__content__title">
+          The Downsides of AI Artistry
+        </h3>
+        <p class="new-news__content__body">
+          What are the possible adverse effects of on-demand AI image generation?
+        </p>
+      </article>
+      <article class="new-news__content">
+        <h3 class="new-news__content__title">
+          Is VC Funding Drying Up?
+        </h3>
+        <p class="new-news__content__body">
+          Private funding by VC firms is down 50% YOY. We take a look at what that means.
+        </p>
+      </article>
+    </section>
+    <section class="popular-news">
+      <article class="popular-news__info">
+          <img src="assets/images/image-retro-pcs.jpg" alt="Reviving retro pcs" class="popular-news__image">
+        <div class="popular-news__content">
+          <p class="popular-news__ranking">01</p>
+          <h3 class="popular-news__title">
+            Reviving Retro PCs
+          </h3>
+          <p class="popular-news__body">
+            What happens when old PCs are given modern upgrades?
+          </p>
+        </div>
+      </article>
+      <article class="popular-news__info">
+          <img src="assets/images/image-top-laptops.jpg" alt="Top Laptops" class="popular-news__image">
+        
+        <div class="popular-news__content">
+          <p class="popular-news__ranking">02</p>
+          <h3 class="popular-news__title">
+            Top 10 Laptops of 2022
+          </h3>
+          <p class="popular-news__body">
+            Our best picks for various needs and budgets.
+          </p>
+        </div>
+      </article>
+      <article class="popular-news__info">
+          <img src="assets/images/image-gaming-growth.jpg" alt="Gaming growth" class="popular-news__image">
+        <div class="popular-news__content">
+          <p class="popular-news__ranking">03</p>
+          <h3 class="popular-news__title">
+            The Growth of Gaming
+          </h3>
+          <p class="popular-news__body">
+            How the pandemic has sparked fresh opportunities.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  
+  
+</body>
+</html>

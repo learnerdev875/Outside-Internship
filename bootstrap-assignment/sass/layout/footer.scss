@@ -1,0 +1,27 @@
+footer {
+  ul {
+    li {
+      padding-top: 1.6rem;
+      font-weight: 500;
+    }
+    li:first-child {
+      padding-top: 0;
+    }
+  }
+  .logo-2 {
+    height: 6.875rem;
+    width: 26.625rem;
+    object-fit: cover;
+  }
+  span {
+    display: inline-block;
+    border-bottom: 1px solid red;
+    padding-bottom: 2px;
+  }
+  .footer-bottom {
+    padding-top: 12rem;
+  }
+  // .left-column {
+  //   gap: 4.5rem;
+  // }
+}

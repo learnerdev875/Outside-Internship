@@ -1,0 +1,6 @@
+@use "./functions" as f;
+@mixin flex-container {
+  display: flex;
+  flex-direction: column;
+  gap: f.rem(100);
+}

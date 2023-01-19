@@ -1,0 +1,59 @@
+@use "../utils/" as u;
+.container {
+  width: min(100%, u.rem(1180));
+  margin-inline: auto;
+  padding-block: u.rem(20);
+
+  &__subheading {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  &__heading {
+    text-align: center;
+    margin-bottom: u.rem(50);
+  }
+}
+
+.top-destination-list {
+  background-color: u.$white;
+  padding: u.rem(20);
+  display: grid;
+  grid-template-columns: repeat(6, u.rem(280));
+  border-radius: u.rem(10);
+  //for image sroller or carousal
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* chrome, safari, opera*/
+  }
+  column-gap: u.rem(20);
+  row-gap: u.rem(30);
+  @include u.breakpoint(medium) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+  }
+  &__item {
+    box-shadow: u.$box-shadow;
+    border-radius: u.rem(10);
+    padding: u.rem(10) u.rem(10) u.rem(20);
+  }
+  &__image {
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__duration {
+    display: flex;
+    align-items: center;
+    gap: u.rem(10);
+    img {
+      width: u.rem(24);
+    }
+  }
+}

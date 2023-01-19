@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2</title>
+    <style>
+        .box{
+            border:1px solid black;
+            box-sizing: border-box;
+            width:200px;  
+            margin-bottom: 10px;  
+        }
+        .padding-inline{
+            padding-inline: 20px;
+        }
+        .padding-inline-block{
+            padding-inline: 20px;
+            writing-mode: vertical-rl;
+        }
+        .padding-block{
+            padding-block:20px;
+        }
+        .padding-inline-start{
+            padding-inline-start: 20px;
+        }
+        .padding-inline-end{
+            padding-inline-end: 20px;
+        }
+        .padding-right{
+            direction: rtl;
+            padding-right: 20px;
+        }
+        .padding-inline-end2{
+            direction: rtl;
+            padding-inline-end:20px ;
+        }
+    </style>
+</head>
+<body>
+    <h1>Padding inline</h1>
+    <!-- its a shorthand for padding-inline-start and padding-inline-end which sets padding on left and right respectively -->
+    <div class="padding-inline box">
+        I have padding on left and right side by 20 px
+    </div>
+    <!-- Now if if i change the writing mode to vertical then it acts as padding-block which sets padding to top and bottom -->
+    <div class="box padding-inline-block">
+        I have padding on top and bottom by 20px
+    </div>
+     <h1>Padding block</h1>
+     <div class="box padding-block">
+        I have padding on top and bottom by 20px
+     </div>
+     <h1>padding inline start</h1>
+     <div class="box padding-inline-start">
+        I have padding on left by 20px
+     </div>
+     <h1>padding inline end</h1>
+     <div class="box padding-inline-end">
+        I have padding on right by 20px
+     </div>
+     <!-- the difference between padding right and padding-inline-end is the when we change the writing direction right left to right, the padding-inline-end acts as padding left -->
+     <h1>Padding right and padding-inline-end</h1>
+     <div class="box padding-right">
+        I have padding at right by 20px even when changing the direction
+     </div>
+     <div class="box padding-inline-end2">
+        I have padding at left by 20px though im using padding-inline-end
+     </div>
+</body>
+</html>

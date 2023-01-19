@@ -1,0 +1,22 @@
+//function to take a px and returns rem unit
+@use "sass:math";
+
+@function rem($pixel) {
+  //throw an error when we provide unit in parameter
+
+  @if math.is-unitless($pixel) {
+    //16 is unitless and 16px has unit
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error "The parameter in function contains unit";
+  }
+  // divide px by 16
+}
+
+@function em($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + em;
+  } @else {
+    @error "The parameter contains unit";
+  }
+}

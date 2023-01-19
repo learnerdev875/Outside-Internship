@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display:inline-block</title>
+    <style>
+        /* setting font size to zero
+        body{
+            font-size: 0;
+        }
+        .left,.right{
+            font-size: 16px;
+        } */
+        /* usig flex */
+        body{
+            display: flex;
+        }
+        .left,.right{
+            display: inline-block;
+            background-color:green;
+            width:200px;
+            height:200px;
+             /* negative margin method  */
+            /* margin-right:-4px;  */
+        }
+    
+    
+    </style>
+</head>
+<body>
+    <div class="left">
+        <p>inline</p>
+    </div>
+    <div class="right">
+        <p>block</p>
+    </div>
+    <!-- 
+        removing the spaces between the elements
+        <div class="left">
+        <p>inline</p></div><div class="right">
+        <p>block</p>
+    </div> -->
+    <!-- <div class="left">
+        <p>inline</p>
+    </div
+    ><div class="right">
+        <p>block</p>
+    </div> -->
+    
+</body>
+</html>

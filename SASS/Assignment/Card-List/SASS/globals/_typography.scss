@@ -1,0 +1,12 @@
+@use "../utils/" as u;
+h1 {
+  font-weight: 700;
+  line-height: 120%;
+  font-size: u.rem(27.6);
+  margin-top: 0;
+}
+p {
+  margin-top: 0;
+  font-size: u.rem(16);
+  line-height: 180%;
+}

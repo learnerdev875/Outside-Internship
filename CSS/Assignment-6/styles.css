@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300,700&display=swap');
+body{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+.main-container{
+    padding-block: 2.875rem 8.025625rem;
+    display: flex;
+    flex-direction: column;
+    gap:3.75rem;
+    width:100%;
+}
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    gap:38.27px;
+    align-items: center;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 23.375rem;
+}
+img{
+    width: 100%;
+    height: 275px;
+}
+.title{
+font-size: 25px;
+font-weight: 700;
+line-height: 30px;
+}
+.flex-container p:nth-child(2){
+font-size: 18px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 1px;
+}
+.title{
+    width: 19.25rem;
+}
+
+@media screen and (min-width:1200px) {
+   .main-container{
+    max-width: 1290px;
+    margin-inline: auto;
+    justify-content: center;
+    padding-block: 0;
+    height: 1153px;
+   } 
+   .flex-container{
+    flex-direction: row;
+    justify-content: space-between;
+    height: 379.19px;
+   }
+   .main-container > div:nth-child(1){
+    flex-direction: row-reverse;
+   }
+   img{
+    max-width: 850px;
+    height: 100%;
+   }
+   .title{
+    font-size: 34px;
+   }
+   .flex-container p:nth-child(2){
+    font-size: 20px;
+    width:329.51px;
+   }
+   .title{
+    width:100%;
+   }
+
+ 
+}

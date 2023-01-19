@@ -1,0 +1,45 @@
+@use "../utils/" as u;
+@use "../globals/colors" as c;
+.card-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  gap: u.rem(20);
+  width: min(100% - u.rem(40), u.rem(920));
+  padding-block: u.rem(20);
+  margin-inline: auto;
+  @include u.breakpoint(large) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  &__item {
+    display: inline-flex;
+    flex-direction: column;
+    gap: u.rem(10);
+  }
+  &__icon {
+    width: u.rem(44);
+    // height: u.rem(40);
+  }
+  &description {
+    text-align: justify;
+    @include u.breakpoint(large) {
+      text-align: left;
+    }
+  }
+  &__button {
+    padding: u.rem(5) u.rem(15);
+    border-radius: u.rem(15);
+    border: none;
+    text-transform: uppercase;
+    width: u.rem(119);
+    height: u.rem(39);
+    cursor: pointer;
+    &:hover {
+      @include u.hover;
+    }
+    &--primary {
+      background-color: c.$light-green;
+    }
+  }
+}

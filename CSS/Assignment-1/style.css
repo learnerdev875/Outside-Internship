@@ -1,0 +1,47 @@
+form{
+    margin-top:20px;
+}
+input{
+    display: block;
+    margin-bottom:20px;
+}
+input[type=password]{
+    color:red
+}
+input[type=text]:focus{
+    padding:10px;
+}
+.login-btn:hover{
+    background-color: blanchedalmond;
+}
+/* unvisited link */
+a:link{
+    color:#4285F4;
+}
+a:visited{
+    color:#DB4437;
+}
+a:active{
+    color:#F4B400;
+}
+.has-selector h1:has(){
+    color:red;
+}
+.box{
+    padding:20px;
+    border:1px solid black;
+    margin-bottom: 10px;
+}
+.box:has(p){
+    background-color:rebeccapurple;
+}
+.box p{
+    background-color:#DB4437;
+}
+
+.not-selector div:not(section div){
+    color:red
+}
+.is-selector :is(.a,.b){
+    background-color: #4285F4;
+}

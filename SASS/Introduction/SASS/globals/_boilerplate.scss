@@ -1,0 +1,21 @@
+// CSS reset
+
+@use "../utils" as u; //name spaces
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  //font-size: 62.5% this sets the font size to 10px and makes easy to calculate rem values.
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  font-family: u.$font;
+  padding: 0;
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

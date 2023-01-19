@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem with Clear</title>
+    <style>
+        body{
+            box-sizing: border-box;
+        }
+        .inner-box{
+            width:80px;
+            height:60px;
+            background-color: aquamarine;
+            float: right;
+        }
+        .box{
+            width:500px;
+            border:1px solid black;
+        }
+        .box img{
+            width:30%;
+            float: left;
+        }
+        p{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <p>The clear property controls the flow next to floated elements.The clear property specifies what should happen with the element that is next to a floating element.</p>
+    <div class="box">
+        <img src="./kathmandu.jpeg" alt="Kathmandu">
+        <div class="inner-box"></div>
+        <p>
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, sunt? Dolorum minima corrupti odio molestiae reiciendis, minus reprehenderit voluptate, dignissimos ex aliquid quam expedita! Molestiae earum assumenda maxime perspiciatis. Voluptate?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur praesentium consectetur nihil suscipit nulla numquam illo reiciendis aut ipsum optio?
+        </p>
+    </div>
+    
+</body>
+</html>
