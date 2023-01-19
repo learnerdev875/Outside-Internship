@@ -1,0 +1,25 @@
+html {
+  font-size: 10px;
+}
+@font-face {
+  font-family: h2;
+  src: url(../../fonts/GT-Super-Display-Medium-Italic-Trial.otf);
+}
+
+@font-face {
+  font-family: gt;
+  src: url(../../fonts/GT-Super-Display-Medium-Trial.otf);
+}
+h1 {
+  font-size: 5.1rem !important;
+}
+h2 {
+  font-size: 6.4rem !important;
+  // font-family: h2;
+}
+h3 {
+  font-size: 1.7rem !important;
+}
+// p {
+//   font-size: 1.3rem;
+// }

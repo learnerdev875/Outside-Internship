@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Max and Clamp functions</title>
+    <style>
+      body{
+        padding: 0;
+        margin: 0;
+      }
+      .min-container img{
+        height: 200px;
+        width:min(50%,300px);
+        object-fit: cover;
+      }
+      .max-container img{
+        height:200px;
+        width:max(50%,300px);
+        object-fit: cover;
+      }
+      .clamp-container h1{
+        font-size: clamp(2rem, 4vw, 4rem);
+      }
+      .box {
+            width: clamp(150px, 50%, 400px);
+            height: 8rem;
+            background: #5f76e8;
+        }
+        @media screen and (min-width:400px) {
+          
+            .media-query img{
+              width:100%;
+              height:300px;
+              object-fit: cover;
+            }
+        }
+      
+    </style>
+</head>
+<body>
+    <article class="min-container">
+      <h1>The min() function</h1>
+      <p>The min will select the smallest value from the list of comma-separated list of values. I have used 50% and 300px.</p>
+      <img src="./salad.jpg" alt="Salad pic">
+      <p>Resize the browser to see the effect</p>
+    </article>
+    <article class="max-container">
+      <h1>The max() function</h1>
+      <p>The max will select the highest value from the list of comma-separated list of values. I have used 50% and 300px.</p>
+      <img src="./salad.jpg" alt="Salad pic">
+      <p>Resize the browser to see the effect</p>
+    </article>
+    <article class="clamp-container">
+      <h1>The clamp() function</h1>
+      <p>The clamp() takes in three parameters, repectively,minimum value, preferred value and maximum value. It clamps a middle value within the range of values between a defined minimum bound and maximum bound.</p>
+      <div class="box">
+      </div>
+    </article>
+    <article class="media-query">
+      <img src="./salad.jpg" alt="Salad picture">
+    </article>
+</body>
+</html>

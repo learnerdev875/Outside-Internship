@@ -1,0 +1,30 @@
+@use "../abstracts/" as a;
+.color {
+  padding-block: a.rem(100);
+  border-bottom: 1px solid a.$black;
+  // &__title {
+  //   padding-bottom: a.rem(60);
+  // }
+  &__list {
+    display: inline-flex;
+    gap: a.rem(40);
+    h3,
+    p {
+      margin: 0;
+    }
+    h3 {
+      padding-top: a.rem(12);
+    }
+    &__demo--black {
+      background-color: a.$black;
+    }
+    &__demo--army-green {
+      background-color: a.$army-green;
+      border: none;
+    }
+    &__demo--light-green {
+      background-color: a.$light-green;
+      border: none;
+    }
+  }
+}

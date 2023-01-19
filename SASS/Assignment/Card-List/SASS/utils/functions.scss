@@ -1,0 +1,19 @@
+@use "sass:math";
+
+//function to return rem from px
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error "The parameter contains unit. please remove it";
+  }
+}
+
+//function to return em from px
+@function em($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + em;
+  } @else {
+    @error "The parameter contains unit";
+  }
+}

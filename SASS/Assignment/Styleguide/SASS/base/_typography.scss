@@ -1,0 +1,26 @@
+@use "../abstracts/" as a;
+h1 {
+  font-size: 700;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+h2,
+h3 {
+  font-weight: 400;
+  margin-top: 0;
+}
+
+//loops
+@for $i from 1 through 3 {
+  h#{$i} {
+    font-size: nth(a.$font-sizes, $i);
+  }
+}
+p {
+  font-size: a.rem(14);
+  color: a.$light-grey;
+  margin-top: 0;
+}
+h2 {
+  padding-bottom: a.rem(60);
+}

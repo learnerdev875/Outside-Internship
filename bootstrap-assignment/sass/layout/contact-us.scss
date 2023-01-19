@@ -1,0 +1,18 @@
+.contact-us {
+  &__container {
+    background-image: url(contact-us.png);
+    background-size: cover;
+  }
+  &__button {
+    padding: 0.8rem 0.8rem 1.1rem 1.6rem;
+    border-radius: 0.4rem;
+    &--icon {
+      color: #ff5c39;
+    }
+  }
+  &__heading {
+    &--span {
+      font-family: h2;
+    }
+  }
+}

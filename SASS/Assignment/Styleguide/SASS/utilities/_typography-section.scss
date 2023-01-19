@@ -1,0 +1,51 @@
+@use "../abstracts/" as a;
+.typography {
+  padding-bottom: a.rem(100);
+  border-bottom: 1px solid a.$black;
+  // &__title {
+  //   padding-bottom: a.rem(60);
+  // }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: a.rem(40);
+    &__item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: a.rem(100);
+    }
+    &__name,
+    &__paragraph {
+      color: a.$text-black;
+    }
+    &__name {
+      font-size: a.rem(20);
+      margin: 0;
+      padding-bottom: 8px;
+    }
+    &__font-size,
+    &__line-height {
+      margin: 0;
+    }
+    &__paragraph {
+      &--h1 {
+        font-size: a.rem(27.65);
+        line-height: 120%;
+        font-weight: 700;
+      }
+      &--h2 {
+        font-size: a.rem(19.2);
+        line-height: 180%;
+        font-weight: 700;
+      }
+      &--body1 {
+        font-size: a.rem(16);
+        line-height: 180%;
+      }
+      &--body2 {
+        font-size: a.rem(14);
+        line-height: 180%;
+      }
+    }
+  }
+}
