@@ -6,46 +6,78 @@
 html {
   font-family: "Inter", sans-serif;
   font-size: 10px;
+  background-color: #ffea20;
 }
-.assignments {
-  display: grid;
-  margin-top: 10rem;
-  place-items: center;
-  gap: 2rem;
+#main {
+  padding: 1rem;
 }
-a {
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: #8dcbe6;
+}
+
+.link {
   text-decoration: none;
-  text-transform: uppercase;
-  font-size: 1rem;
-}
-.assignments__links {
-  background-color: cadetblue;
-  color: white;
-  font-size: 2rem;
-  padding: 1.5rem;
+  background-color: #3d5656;
+  color: #fff;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 400;
   border-radius: 0.5rem;
 }
-.assignment__name {
-  font-size: 3rem;
-  align-self: center;
+.link:hover {
+  background-color: #9ea1d4;
 }
-.assignment {
-  display: flex;
-  flex-direction: column;
+.main__heading {
+  margin-bottom: 2rem;
+}
+.main__profile {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.assignments__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
   gap: 2rem;
 }
-.assignment__card {
-  border: 0.2rem solid black;
+.assignment__image {
+  max-width: 20%;
+}
+.assignment__image > img {
+  width: 100%;
+}
+.assignment {
+  border: 1px solid #3d5656;
   padding: 2rem;
-  width: 20rem;
-  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.assignment__card__link--demo {
-  background-color: cadetblue;
-  color: white;
-  padding: 0.5rem;
+.assignment__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
 }
-.assignment__card__number {
-  padding-bottom: 1rem;
+h2 {
   font-size: 2rem;
+  color: #68b984;
+}
+.assignment__bottom {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .assignments__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1280px) {
+  #main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
