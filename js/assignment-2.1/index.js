@@ -46,46 +46,22 @@ form.appendChild(div1);
 
 //checkbox
 let checkboxDiv = createElement("div", "class", "checkboxes");
-let checkbox1Div = createElement("div", "class", "checkbox");
-let checkbox2Div = createElement("div", "class", "checkbox");
-let checkbox3Div = createElement("div", "class", "checkbox");
-let checkbox4Div = createElement("div", "class", "checkbox");
+let options = ["uppercase", "lowercase", "number", "special"];
 
-let checkbox1 = createElement("input", "type", "checkbox");
-checkbox1.setAttribute("id", "lowercase");
-let checkbox1Label = createElement("label", "for", "lowercase", "Lowercase");
-
-let checkbox2 = createElement("input", "type", "checkbox");
-checkbox2.setAttribute("id", "uppercase");
-let checkbox2Label = createElement("label", "for", "uppercase", "Uppercase");
-
-let checkbox3 = createElement("input", "type", "checkbox");
-checkbox3.setAttribute("id", "number");
-let checkbox3Label = createElement("label", "for", "number", "Number");
-
-let checkbox4 = createElement("input", "type", "checkbox");
-checkbox1.setAttribute("id", "special");
-let checkbox4Label = createElement(
-  "label",
-  "for",
-  "special",
-  "Special Characters"
-);
-
-checkbox1Div.appendChild(checkbox1);
-checkbox1Div.appendChild(checkbox1Label);
-checkbox2Div.appendChild(checkbox2);
-checkbox2Div.appendChild(checkbox2Label);
-checkbox3Div.appendChild(checkbox3);
-checkbox3Div.appendChild(checkbox3Label);
-checkbox4Div.appendChild(checkbox4);
-checkbox4Div.appendChild(checkbox4Label);
-
-checkboxDiv.appendChild(checkbox1Div);
-checkboxDiv.appendChild(checkbox2Div);
-checkboxDiv.appendChild(checkbox3Div);
-checkboxDiv.appendChild(checkbox4Div);
-
+for (let i = 0; i < options.length; i++) {
+  let checkbox = createElement("div", "class", "checkbox");
+  let input = createElement("input", "type", "checkbox");
+  input.setAttribute("id", options[i]);
+  let inputLabel = createElement(
+    "label",
+    "for",
+    options[i],
+    options[i].charAt(0).toUpperCase() + options[i].slice(1)
+  );
+  checkbox.appendChild(input);
+  checkbox.appendChild(inputLabel);
+  checkboxDiv.appendChild(checkbox);
+}
 form.appendChild(checkboxDiv);
 
 //button
@@ -93,6 +69,12 @@ let btn = createElement("button", "id", "btn", "Generate");
 form.appendChild(btn);
 
 main.appendChild(form);
+
+//error
+let errorDiv = createElement("div", "class", "errorDiv");
+let errorP = createElement("p", "class", "errorMessage");
+errorDiv.appendChild(errorP);
+main.appendChild(errorDiv);
 
 //password generate
 let passwordDiv = createElement("div", "class", "password");
@@ -105,6 +87,7 @@ main.appendChild(passwordDiv);
 
 let length = document.querySelector("#length");
 let range = document.querySelector("#slider");
+let errorText = document.querySelector(".errorMessage");
 
 range.addEventListener("change", function () {
   length.value = range.value;
@@ -124,26 +107,40 @@ let specialChars = "@!#$%^&*(){}[]:;,./|~";
 
 button.addEventListener("click", function (e) {
   e.preventDefault();
+
+  //error checking
+  let checkCount = 0;
   let len = Number(length.value);
   let charRange = "";
   if (uppercase.checked) {
     charRange = charRange + uppercaseChars;
+    checkCount++;
   }
   if (lowercase.checked) {
-    // charRange += lowercaseChars;
     charRange = charRange + lowercaseChars;
+    checkCount++;
   }
   if (number.checked) {
-    // charRange += numChars;
     charRange = charRange + numChars;
+    checkCount++;
   }
   if (special.checked) {
-    // charRange += specialChars;
     charRange = charRange + specialChars;
+    checkCount++;
   }
-  let res = "";
-  for (let i = 0; i < len; i++) {
-    res += charRange.charAt(Math.floor(Math.random() * charRange.length));
+
+  if (len < checkCount) {
+    generatedPassword.innerText = "";
+    errorText.innerText =
+      "You selected length smaller than the option selected";
+    setInterval(function () {
+      errorText.innerText = "";
+    }, 3000);
+  } else {
+    let res = "";
+    for (let i = 0; i < len; i++) {
+      res += charRange.charAt(Math.floor(Math.random() * charRange.length));
+    }
+    generatedPassword.innerText = res;
   }
-  generatedPassword.innerText = res;
 });
