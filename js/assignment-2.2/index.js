@@ -1,4 +1,21 @@
 //DOM
+function createElement(el, cl, clname, textNode) {
+  let element;
+  if (cl && clname && textNode) {
+    element = document.createElement(el);
+    element.setAttribute(cl, clname);
+    let text = document.createTextNode(textNode);
+    element.appendChild(text);
+  } else if (textNode) {
+    element = document.createElement(el);
+    let text = document.createTextNode(textNode);
+    element.appendChild(text);
+  } else {
+    element = document.createElement(el);
+    element.setAttribute(cl, clname);
+  }
+  return element;
+}
 let main = document.querySelector("#main");
 let buttonsDiv = document.createElement("div");
 buttonsDiv.setAttribute("class", "buttons");
@@ -26,9 +43,20 @@ for (let i = 0; i < spans.length; i++) {
   span.setAttribute("id", spans[i]);
   let spanContent = document.createTextNode("00");
   span.appendChild(spanContent);
-  //   p.appendChild("hello");
   p.appendChild(span);
 }
+
+//stopwatch
+// let hrSpan = createElement("span", "id", spans[0]);
+// let minSpan = createElement("span", "id", spans[1]);
+// let secSpan = createElement("span", "id", spans[2]);
+// let spanContent = document.createTextNode("00");
+// hrSpan.appendChild(spanContent);
+// minSpan.appendChild(spanContent);
+// secSpan.appendChild(spanContent);
+
+// p.innerHTML = `<span></span>:<span`;
+
 stopwatchDiv.appendChild(p);
 main.appendChild(stopwatchDiv);
 

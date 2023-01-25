@@ -58,6 +58,12 @@ let assignments = [
     altText: "Gulp Logo",
     path: "final-project.html",
   },
+  {
+    name: "JavaScript",
+    imgSrc: "images/js.jpg",
+    altText: "JS Logo",
+    path: "js-assignment.html",
+  },
 ];
 
 for (let i = 0; i <= assignments.length - 1; i++) {
