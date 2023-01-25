@@ -1,0 +1,206 @@
+/* reset css */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10px;
+  /* overflow: hidden; */
+}
+/* base style */
+a {
+  text-decoration: none;
+}
+
+/* main container */
+#main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.main__left-container {
+  background-color: #f4f4f4;
+  padding: 8rem 0;
+  text-align: center;
+}
+.main__left-container__image {
+  max-width: 30%;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+.main__left-container__image > img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.main__left-container__name {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.main__left-container__post {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+.main__left-container__info {
+  margin-bottom: 4.7rem;
+}
+.main__btn {
+  padding: 1rem 6rem;
+  background-color: #2e2e2e;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+}
+.main__left-container__button {
+  margin-bottom: 5rem;
+}
+.main__left-container__social-links {
+  font-size: 2rem;
+}
+.main__left-container__social-links a {
+  color: #2e2e2e;
+}
+.main__left-container__social-links i {
+  padding-right: 1rem;
+}
+.main__right-container {
+  padding: 10rem 9rem;
+}
+.main__right-container__heading2 {
+  font-size: 4.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.main__right-container__about-me {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 6rem;
+}
+.main__right-container__buttons {
+  display: flex;
+  gap: 2rem;
+}
