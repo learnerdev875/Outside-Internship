@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 10px;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+.container {
+  aspect-ratio: 1/1;
+  position: relative;
+}
+.box {
+  position: absolute;
+  transition: all 0.007s linear;
+}
