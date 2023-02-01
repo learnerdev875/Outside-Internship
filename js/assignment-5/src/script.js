@@ -6,6 +6,13 @@ canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 let isGameOver = false;
 let lastTime = 0;
+//to set the width of car and obstacles;
+const laneWidth = canvasWidth / 3;
+const componentHeight = 100;
+const obstacleX = Math.floor(Math.random() * 3) * laneWidth;
+let score = 0;
+console.log(score);
+
 //images
 const road = document.querySelector("#road_img");
 
@@ -20,7 +27,7 @@ class Car {
       y: canvasHeight - this.height - 10,
     };
     //how fast the car will move
-    this.maxSpeed = 4;
+    this.maxSpeed = 2;
     this.speed = 0;
   }
   draw() {
@@ -108,7 +115,11 @@ class Obstacle {
     );
   }
   update(deltaTime) {
-    this.position.y += this.speed.y;
+    if (this.position.y > canvasHeight) {
+      this.position.x = Math.floor(Math.random() * 3) * laneWidth;
+      this.position.y = 0;
+      score++;
+    }
 
     //check collision with our car
     let bottomOfObstacle = this.position.y + this.height;
@@ -119,9 +130,9 @@ class Obstacle {
       leftOfCar < this.position.x + this.game.car.width &&
       leftOfCar + this.game.car.width > this.position.x
     ) {
-      alert("Oh No. You Crashed");
       isGameOver = true;
     }
+    this.position.y += this.speed.y;
   }
 }
 
@@ -129,13 +140,10 @@ class Obstacle {
 class Game {
   constructor() {}
   start() {
-    this.car = new Car(40, 50);
+    this.car = new Car(laneWidth, componentHeight);
     new InputHandler(this.car);
-    // let obstacles = [];
-    // for (let i = 0; i < 1; i++) {
-    //   obstacles.push(new Obstacle(40, 50, Math.random() * canvasWidth));
-    // }
-    this.gameObjects = [this.car];
+    this.obstacle = new Obstacle(laneWidth, componentHeight, obstacleX);
+    this.gameObjects = [this.car, this.obstacle];
   }
 
   update(elapsedTime) {
@@ -154,10 +162,7 @@ class Game {
 let game = new Game();
 game.start();
 
-let obstacles = [];
-function createObstacle() {
-  obstacles.push(new Obstacle(40, 50, Math.random() * canvasWidth - 40));
-}
+//creating obstacles randomly
 
 function gameLoop(timestamp) {
   let elapsedTime = timestamp - lastTime;
@@ -165,23 +170,21 @@ function gameLoop(timestamp) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (!isGameOver) {
     ctx.drawImage(road, 0, 0, canvasWidth, canvasHeight);
-    for (const obs of obstacles) {
-      if (obs.position.y >= canvasHeight) {
-        obstacles.splice(obs, 1);
-      }
-      obs.update();
-      obs.draw();
-    }
-    if (Math.random() < 0.01) {
-      createObstacle();
-    }
+    drawScore();
     game.update(elapsedTime);
     game.draw();
-    requestAnimationFrame(gameLoop);
-    console.log(obstacles);
+    console.log(score);
   } else {
     endGame();
   }
+  requestAnimationFrame(gameLoop);
+}
+
+//for score display
+function drawScore() {
+  ctx.fillStyle = "black";
+  ctx.font = "30px serif";
+  ctx.fillText(`Score : ${score} `, 20, 40);
 }
 
 function endGame() {
@@ -192,6 +195,7 @@ function endGame() {
   ctx.font = "30px serif";
   ctx.fillText("GAME OVER", canvas.width / 5, canvas.height / 2);
   ctx.fillStyle = "black";
+  ctx.fillText(`You scored ${score}`, canvasWidth / 4, canvasHeight / 2 + 100);
   ctx.fillText("Restart", canvas.width / 3, canvas.height / 2 + 140);
 }
 requestAnimationFrame(gameLoop);
