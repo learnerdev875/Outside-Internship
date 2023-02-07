@@ -5,11 +5,10 @@ class InputHandler {
         case " ":
           if (gameState === "menu") {
             gameState = "running";
-          } else if (gameState === "running") {
+          }
+          if (gameState === "running") {
             console.log("Space clicked");
             accelerate(-0.1);
-          } else if (gameState === "gameover") {
-            window.reload();
           }
           break;
       }

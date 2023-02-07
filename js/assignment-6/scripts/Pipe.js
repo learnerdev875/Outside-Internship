@@ -32,7 +32,6 @@ class Pipe {
       bird.position.y
     ) {
       gameState = "gameover";
-      bird.y
     }
   }
 }

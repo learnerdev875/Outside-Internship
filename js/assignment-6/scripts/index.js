@@ -22,6 +22,16 @@ const pipeHeight = CANVAS_HEIGHT / 2;
 //game state
 let gameState = "menu";
 
+//Images
+const gameStartImg = new Image();
+gameStartImg.src = "./assets/menu.png";
+
+const gameOverImg = new Image();
+gameOverImg.src = "./assets/gameover.png";
+
+const restartImg = new Image();
+restartImg.src = "./assets/restart1.jpg";
+
 //base
 const baseImg = new Image();
 baseImg.src = "./assets/base.png";
@@ -92,15 +102,21 @@ new InputHandler(accelerate);
 
 //render menu
 function renderMenu() {
-  ctx.font = "20px Arial";
-  ctx.fillText("Press Space to Start", 100, CANVAS_HEIGHT / 2);
+  ctx.drawImage(
+    gameStartImg,
+    canvas.width / 2 - 100,
+    canvas.height / 2 - 150,
+    200,
+    250
+  );
 }
 
-//render game over
+//function to end the game and display the result
 function renderGameOver() {
-  // console.log(pipes);
-  ctx.fillText("Game Over", 130, CANVAS_HEIGHT / 2);
+  gameOver = true;
+  ctx.drawImage(gameOverImg, 70, 200, 250, 100);
   ctx.fillText("Your Score " + score / 2, 125, CANVAS_HEIGHT / 2 + 30);
+  ctx.drawImage(restartImg, 80, canvas.height - 250, 200, 50);
 }
 
 //render score
@@ -109,6 +125,20 @@ function renderScore() {
   ctx.fillStyle = "white";
   ctx.fillText("Score: " + score / 2, CANVAS_WIDTH / 2 - 30, 50);
 }
+
+//restart game logic
+canvas.addEventListener("click", function (event) {
+  let x = event.offsetX;
+  let y = event.offsetY;
+  if (
+    x >= 80 &&
+    x <= 280 &&
+    y >= canvas.height - 250 &&
+    y <= canvas.height - 250 + 50
+  ) {
+    location.reload();
+  }
+});
 
 //game loop
 function gameLoop(timestamp) {
@@ -129,11 +159,12 @@ function gameLoop(timestamp) {
     renderPipes();
     renderScore();
   } else if (gameState === "gameover") {
-    cancelAnimationFrame(gameLoop);
-    renderGameOver();
     renderPipes();
+    accelerate(0.05);
+    bird.update();
+    renderGameOver();
   }
   requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+requestAnimationFrame(gameLoop);
