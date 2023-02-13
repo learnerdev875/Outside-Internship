@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #7286d3;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: "Roboto", sans-serif;
+}
+#main {
+  background-color: #e5e0ff;
+  padding: 1rem;
+  max-width: 90%;
+}
+h1 {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid grey;
+  font-weight: 700;
+}
+form {
+  padding: 1rem 0;
+}
+
+.input__length > label {
+  /* display: flex;
+  flex-direction: column;
+  gap: 0.5rem; */
+  display: block;
+  margin-bottom: 0.5rem;
+}
+input[type="range"] {
+  width: 70%;
+  display: inline-block;
+}
+input[type="number"] {
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  width: 20%;
+  display: inline-block;
+}
+.input__length {
+  padding-bottom: 1rem;
+}
+.checkboxes {
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+button {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  background-color: #8ea7e9;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.generated_password {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 1024px) {
+  #main {
+    max-width: 50%;
+  }
+  input[type="number"] {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  input[type="range"] {
+    width: 50%;
+  }
+}
