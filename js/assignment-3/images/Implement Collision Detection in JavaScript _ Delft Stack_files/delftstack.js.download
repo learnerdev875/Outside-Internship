@@ -1,0 +1,2 @@
+(function(){var elementsStep=document.getElementsByClassName('step');var elementsTable=document.getElementsByTagName('table');for(var i=0;i<elementsStep.length;i++){elementsStep[i].getElementsByTagName("ul")[0].setAttribute('class','step-text');}
+for(var i=0;i<elementsTable.length;i++){elementsTable[i].setAttribute('class','table table-bordered table-striped');}})();

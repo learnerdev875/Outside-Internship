@@ -229,6 +229,12 @@ function handleObstacles() {
       if (checkCollision(frog, log)) {
         frog.position.x += log.speed;
         safe = true;
+        if (
+          frog.position.x > canvas.width - frog.width ||
+          frog.position.x < 0
+        ) {
+          safe = false;
+        }
       }
     });
     if (!safe) {
@@ -385,7 +391,6 @@ function animate() {
     renderGameOver();
   } else {
     handleRipples();
-    // handleParticles();
     handleObstacles();
     frog.draw(ctx);
     frog.update();

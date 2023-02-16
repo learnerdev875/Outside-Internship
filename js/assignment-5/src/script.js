@@ -6,12 +6,14 @@ canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 let isGameOver = false;
 let lastTime = 0;
+//position of restart button
+const restartX = canvasWidth / 2 - 70;
+const restartY = canvasHeight / 2 + 130;
 //to set the width of car and obstacles;
 const laneWidth = canvasWidth / 3;
 const componentHeight = 100;
 const obstacleX = Math.floor(Math.random() * 3) * laneWidth;
 let score = 0;
-console.log(score);
 
 //images
 const road = document.querySelector("#road_img");
@@ -131,6 +133,8 @@ class Obstacle {
       leftOfCar + this.game.car.width > this.position.x
     ) {
       isGameOver = true;
+      this.position.x = Math.floor(Math.random() * 3) * laneWidth;
+      this.position.y = 0;
     }
     this.position.y += this.speed.y;
   }
@@ -142,8 +146,13 @@ class Game {
   start() {
     this.car = new Car(laneWidth, componentHeight);
     new InputHandler(this.car);
+    // let obstacles = [];
+    // for (let i = 0; i < 2; i++) {
+    //   obstacles.push(new Obstacle(laneWidth, componentHeight, obstacleX * i));
+    // }
     this.obstacle = new Obstacle(laneWidth, componentHeight, obstacleX);
     this.gameObjects = [this.car, this.obstacle];
+    // this.gameObjects = [this.car, ...obstacles];
   }
 
   update(elapsedTime) {
@@ -179,7 +188,6 @@ function gameLoop(timestamp) {
   }
   requestAnimationFrame(gameLoop);
 }
-
 //for score display
 function drawScore() {
   ctx.fillStyle = "black";
@@ -196,6 +204,8 @@ function endGame() {
   ctx.fillText("GAME OVER", canvas.width / 5, canvas.height / 2);
   ctx.fillStyle = "black";
   ctx.fillText(`You scored ${score}`, canvasWidth / 4, canvasHeight / 2 + 100);
-  ctx.fillText("Restart", canvas.width / 3, canvas.height / 2 + 140);
+  ctx.fillRect(restartX, restartY, 150, 50);
+  ctx.fillStyle = "white";
+  ctx.fillText("Restart", restartX + 35, restartY + 31);
 }
 requestAnimationFrame(gameLoop);

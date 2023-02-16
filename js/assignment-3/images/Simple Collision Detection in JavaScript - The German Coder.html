@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/ -->
+<html class="avada-html-layout-wide avada-html-header-position-top avada-header-color-not-opaque ua-windows_nt ua-windows_nt-10 ua-windows_nt-10-0 ua-chrome ua-chrome-109 ua-chrome-109-0 ua-chrome-109-0-0 ua-chrome-109-0-0-0 ua-desktop ua-desktop-windows ua-webkit ua-webkit-537 ua-webkit-537-36 js touchevents no-applicationcache audio audio-ogg audio-mp3 audio-opus audio-wav audio-m4a canvas canvastext hashchange geolocation history inputtypes-search inputtypes-tel inputtypes-url inputtypes-email no-inputtypes-datetime inputtypes-date inputtypes-month inputtypes-week inputtypes-time inputtypes-datetime-local inputtypes-number inputtypes-range inputtypes-color postmessage postmessage-structuredclones video video-ogg video-h264 no-video-h265 video-webm video-vp9 no-video-hls no-video-av1 webgl websockets cssanimations backgroundsize borderimage borderradius boxshadow flexbox fontface generatedcontent cssgradients hsla multiplebgs opacity cssreflections rgba textshadow csstransforms supports csstransforms3d csstransitions localstorage sessionstorage websqldatabase svgclippaths inlinesvg smil webworkers" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#" data-useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+	<!-- This site is optimized with the Yoast SEO plugin v19.8 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Simple Collision Detection in JavaScript - The German Coder</title>
+	<link rel="canonical" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Simple Collision Detection in JavaScript - The German Coder">
+	<meta property="og:url" content="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/">
+	<meta property="og:site_name" content="The German Coder">
+	<meta property="article:published_time" content="2019-04-05T18:17:03+00:00">
+	<meta property="article:modified_time" content="2021-01-23T22:41:58+00:00">
+	<meta property="og:image" content="https://thegermancoder.com/wp-content/uploads/2019/04/crash.png">
+	<meta property="og:image:width" content="1920">
+	<meta property="og:image:height" content="1080">
+	<meta property="og:image:type" content="image/png">
+	<meta name="author" content="paranerd">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:label1" content="Written by">
+	<meta name="twitter:data1" content="paranerd">
+	<meta name="twitter:label2" content="Est. reading time">
+	<meta name="twitter:data2" content="8 minutes">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/","url":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/","name":"Simple Collision Detection in JavaScript - The German Coder","isPartOf":{"@id":"https://thegermancoder.com/#website"},"primaryImageOfPage":{"@id":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#primaryimage"},"image":{"@id":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#primaryimage"},"thumbnailUrl":"https://thegermancoder.com/wp-content/uploads/2019/04/crash.png","datePublished":"2019-04-05T18:17:03+00:00","dateModified":"2021-01-23T22:41:58+00:00","author":{"@id":"https://thegermancoder.com/#/schema/person/ee7f5c97bb4e4fc052b18b5f95897531"},"breadcrumb":{"@id":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#primaryimage","url":"https://thegermancoder.com/wp-content/uploads/2019/04/crash.png","contentUrl":"https://thegermancoder.com/wp-content/uploads/2019/04/crash.png","width":1920,"height":1080},{"@type":"BreadcrumbList","@id":"https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://thegermancoder.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://thegermancoder.com/blog/"},{"@type":"ListItem","position":3,"name":"Simple Collision Detection in JavaScript"}]},{"@type":"WebSite","@id":"https://thegermancoder.com/#website","url":"https://thegermancoder.com/","name":"The German Coder","description":"Write Better Code","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://thegermancoder.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Person","@id":"https://thegermancoder.com/#/schema/person/ee7f5c97bb4e4fc052b18b5f95897531","name":"paranerd","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://thegermancoder.com/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/bc076948b967c2e7772289ae613752df?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/bc076948b967c2e7772289ae613752df?s=96&d=mm&r=g","caption":"paranerd"},"url":"https://thegermancoder.com/author/paranerd/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="The German Coder » Feed" href="https://thegermancoder.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="The German Coder » Comments Feed" href="https://thegermancoder.com/comments/feed/">
+					<link rel="shortcut icon" href="https://thegermancoder.com/wp-content/uploads/2018/09/favicon-32x32.png" type="image/x-icon">
+		
+					<!-- Apple Touch Icon -->
+			<link rel="apple-touch-icon" sizes="180x180" href="https://thegermancoder.com/wp-content/uploads/2018/09/apple-icon-114x114.png">
+		
+					<!-- Android Icon -->
+			<link rel="icon" sizes="192x192" href="https://thegermancoder.com/wp-content/uploads/2018/09/apple-icon-57x57.png">
+		
+					<!-- MS Edge Icon -->
+			<meta name="msapplication-TileImage" content="https://thegermancoder.com/wp-content/uploads/2018/09/apple-icon-72x72.png">
+				<link rel="alternate" type="application/rss+xml" title="The German Coder » Simple Collision Detection in JavaScript Comments Feed" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/feed/">
+
+		<meta property="og:title" content="Simple Collision Detection in JavaScript">
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/">
+		<meta property="og:site_name" content="The German Coder">
+		<meta property="og:description" content="I&#39;ve been playing around developing some simple games (pun intended^^) from time to time, just for the fun of it. To do that I very often come across some kind of collision detection. I thought I&#39;d show you an easy way of detecting collisions in JavaScript! 
+
+What is a collision? 
+
+Before we even start coding,">
+
+									<meta property="og:image" content="https://thegermancoder.com/wp-content/uploads/2019/04/crash.png">
+							<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/thegermancoder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.0.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script><script src="./Simple Collision Detection in JavaScript - The German Coder_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="layerslider-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/layerslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/css" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 10.5px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 21px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 14px;--wp--preset--font-size--xlarge: 28px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel="stylesheet" id="wpgdprc-front-css-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/front.css" type="text/css" media="all">
+<style id="wpgdprc-front-css-inline-css" type="text/css">
+:root{--wp-gdpr--bar--background-color: #000000;--wp-gdpr--bar--color: #ffffff;--wp-gdpr--button--background-color: #000000;--wp-gdpr--button--background-color--darken: #000000;--wp-gdpr--button--color: #ffffff;}
+</style>
+<link rel="stylesheet" id="fusion-dynamic-css-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/5b71a852ca10125eb0214d5825c56a99.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="avada-max-1c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-1c.min.css" type="text/css" media="only screen and (max-width: 644px)">
+<link rel="stylesheet" id="avada-max-2c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-2c.min.css" type="text/css" media="only screen and (max-width: 735px)">
+<link rel="stylesheet" id="avada-min-2c-max-3c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-2c-max-3c.min.css" type="text/css" media="only screen and (min-width: 735px) and (max-width: 826px)">
+<link rel="stylesheet" id="avada-min-3c-max-4c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-3c-max-4c.min.css" type="text/css" media="only screen and (min-width: 826px) and (max-width: 917px)">
+<link rel="stylesheet" id="avada-min-4c-max-5c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-4c-max-5c.min.css" type="text/css" media="only screen and (min-width: 917px) and (max-width: 1008px)">
+<link rel="stylesheet" id="avada-min-5c-max-6c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-5c-max-6c.min.css" type="text/css" media="only screen and (min-width: 1008px) and (max-width: 1099px)">
+<link rel="stylesheet" id="avada-min-shbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-shbp.min.css" type="text/css" media="only screen and (min-width: 801px)">
+<link rel="stylesheet" id="avada-min-shbp-header-legacy-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-shbp-header-legacy.min.css" type="text/css" media="only screen and (min-width: 801px)">
+<link rel="stylesheet" id="avada-max-shbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-shbp.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-shbp-header-legacy-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-shbp-header-legacy.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-sh-shbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-shbp.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-sh-shbp-header-legacy-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-shbp-header-legacy.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-min-768-max-1024-p-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-768-max-1024-p.min.css" type="text/css" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)">
+<link rel="stylesheet" id="avada-min-768-max-1024-p-header-legacy-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-768-max-1024-p-header-legacy.min.css" type="text/css" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)">
+<link rel="stylesheet" id="avada-min-768-max-1024-l-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-768-max-1024-l.min.css" type="text/css" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)">
+<link rel="stylesheet" id="avada-min-768-max-1024-l-header-legacy-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-768-max-1024-l-header-legacy.min.css" type="text/css" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)">
+<link rel="stylesheet" id="avada-max-sh-cbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-cbp.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-sh-sbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-sbp.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-sh-640-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-640.min.css" type="text/css" media="only screen and (max-width: 640px)">
+<link rel="stylesheet" id="avada-max-shbp-18-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-shbp-18.min.css" type="text/css" media="only screen and (max-width: 782px)">
+<link rel="stylesheet" id="avada-max-shbp-32-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-shbp-32.min.css" type="text/css" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" id="avada-min-sh-cbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-sh-cbp.min.css" type="text/css" media="only screen and (min-width: 800px)">
+<link rel="stylesheet" id="avada-max-640-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-640.min.css" type="text/css" media="only screen and (max-device-width: 640px)">
+<link rel="stylesheet" id="avada-max-main-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-main.min.css" type="text/css" media="only screen and (max-width: 1099px)">
+<link rel="stylesheet" id="avada-max-cbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-cbp.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-sh-cbp-cf7-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-cbp-cf7.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="avada-max-640-sliders-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-640-sliders.min.css" type="text/css" media="only screen and (max-device-width: 640px)">
+<link rel="stylesheet" id="avada-max-sh-cbp-sliders-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-cbp-sliders.min.css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="fb-max-sh-cbp-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-sh-cbp.min(1).css" type="text/css" media="only screen and (max-width: 800px)">
+<link rel="stylesheet" id="fb-min-768-max-1024-p-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-768-max-1024-p.min(1).css" type="text/css" media="only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)">
+<link rel="stylesheet" id="fb-max-640-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-640.min(1).css" type="text/css" media="only screen and (max-device-width: 640px)">
+<link rel="stylesheet" id="fb-max-1c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-1c.css" type="text/css" media="only screen and (max-width: 644px)">
+<link rel="stylesheet" id="fb-max-2c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/max-2c.css" type="text/css" media="only screen and (max-width: 735px)">
+<link rel="stylesheet" id="fb-min-2c-max-3c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-2c-max-3c.css" type="text/css" media="only screen and (min-width: 735px) and (max-width: 826px)">
+<link rel="stylesheet" id="fb-min-3c-max-4c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-3c-max-4c.css" type="text/css" media="only screen and (min-width: 826px) and (max-width: 917px)">
+<link rel="stylesheet" id="fb-min-4c-max-5c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-4c-max-5c.css" type="text/css" media="only screen and (min-width: 917px) and (max-width: 1008px)">
+<link rel="stylesheet" id="fb-min-5c-max-6c-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/min-5c-max-6c.css" type="text/css" media="only screen and (min-width: 1008px) and (max-width: 1099px)">
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.min.js.download" id="jquery-core-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery-migrate.min.js.download" id="jquery-migrate-js"></script>
+<script type="text/javascript" id="layerslider-utils-js-extra">
+/* <![CDATA[ */
+var LS_Meta = {"v":"6.11.9","fixGSAP":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/layerslider.utils.js.download" id="layerslider-utils-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/layerslider.kreaturamedia.jquery.js.download" id="layerslider-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/layerslider.transitions.js.download" id="layerslider-transitions-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/rbtools.min.js.download" async="" id="tp-tools-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/rs6.min.js.download" async="" id="revmin-js"></script>
+<script type="text/javascript" id="wpgdprc-front-js-js-extra">
+/* <![CDATA[ */
+var wpgdprcFront = {"ajaxUrl":"https:\/\/thegermancoder.com\/wp-admin\/admin-ajax.php","ajaxNonce":"6e38cffe54","ajaxArg":"security","pluginPrefix":"wpgdprc","blogId":"1","isMultiSite":"","locale":"en_US","showSignUpModal":"","showFormModal":"","cookieName":"wpgdprc-consent","consentVersion":"","path":"\/","prefix":"wpgdprc"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/front.min.js.download" id="wpgdprc-front-js-js"></script>
+<meta name="generator" content="Powered by LayerSlider 6.11.9 - Multi-Purpose, Responsive, Parallax, Mobile-Friendly Slider Plugin for WordPress.">
+<!-- LayerSlider updates and docs at: https://layerslider.kreaturamedia.com -->
+<link rel="https://api.w.org/" href="https://thegermancoder.com/wp-json/"><link rel="alternate" type="application/json" href="https://thegermancoder.com/wp-json/wp/v2/posts/12655"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://thegermancoder.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://thegermancoder.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 6.0.3">
+<link rel="shortlink" href="https://thegermancoder.com/?p=12655">
+<link rel="alternate" type="application/json+oembed" href="https://thegermancoder.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthegermancoder.com%2F2019%2F04%2F05%2Fsimple-collision-detection-in-javascript%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://thegermancoder.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthegermancoder.com%2F2019%2F04%2F05%2Fsimple-collision-detection-in-javascript%2F&amp;format=xml">
+<style type="text/css" id="css-fb-visibility">@media screen and (max-width: 640px){.fusion-no-small-visibility{display:none !important;}body .sm-text-align-center{text-align:center !important;}body .sm-text-align-left{text-align:left !important;}body .sm-text-align-right{text-align:right !important;}body .sm-flex-align-center{justify-content:center !important;}body .sm-flex-align-flex-start{justify-content:flex-start !important;}body .sm-flex-align-flex-end{justify-content:flex-end !important;}body .sm-mx-auto{margin-left:auto !important;margin-right:auto !important;}body .sm-ml-auto{margin-left:auto !important;}body .sm-mr-auto{margin-right:auto !important;}body .fusion-absolute-position-small{position:absolute;top:auto;width:100%;}.awb-sticky.awb-sticky-small{ position: sticky; top: var(--awb-sticky-offset,0); }}@media screen and (min-width: 641px) and (max-width: 1024px){.fusion-no-medium-visibility{display:none !important;}body .md-text-align-center{text-align:center !important;}body .md-text-align-left{text-align:left !important;}body .md-text-align-right{text-align:right !important;}body .md-flex-align-center{justify-content:center !important;}body .md-flex-align-flex-start{justify-content:flex-start !important;}body .md-flex-align-flex-end{justify-content:flex-end !important;}body .md-mx-auto{margin-left:auto !important;margin-right:auto !important;}body .md-ml-auto{margin-left:auto !important;}body .md-mr-auto{margin-right:auto !important;}body .fusion-absolute-position-medium{position:absolute;top:auto;width:100%;}.awb-sticky.awb-sticky-medium{ position: sticky; top: var(--awb-sticky-offset,0); }}@media screen and (min-width: 1025px){.fusion-no-large-visibility{display:none !important;}body .lg-text-align-center{text-align:center !important;}body .lg-text-align-left{text-align:left !important;}body .lg-text-align-right{text-align:right !important;}body .lg-flex-align-center{justify-content:center !important;}body .lg-flex-align-flex-start{justify-content:flex-start !important;}body .lg-flex-align-flex-end{justify-content:flex-end !important;}body .lg-mx-auto{margin-left:auto !important;margin-right:auto !important;}body .lg-ml-auto{margin-left:auto !important;}body .lg-mr-auto{margin-right:auto !important;}body .fusion-absolute-position-large{position:absolute;top:auto;width:100%;}.awb-sticky.awb-sticky-large{ position: sticky; top: var(--awb-sticky-offset,0); }}</style><meta name="generator" content="Powered by Slider Revolution 6.5.25 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
+<script>function setREVStartSize(e){
+			//window.requestAnimationFrame(function() {
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;
+				try {
+					var pw = document.getElementById(e.c).parentNode.offsetWidth,
+						newh;
+					pw = pw===0 || isNaN(pw) || (e.l=="fullwidth" || e.layout=="fullwidth") ? window.RSIW : pw;
+					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);
+					if(e.layout==="fullscreen" || e.l==="fullscreen")
+						newh = Math.max(e.mh,window.RSIH);
+					else{
+						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];
+						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
+											
+						var nl = new Array(e.rl.length),
+							ix = 0,
+							sl;
+						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;
+						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+						sl = nl[0];
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);
+						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+					}
+					var el = document.getElementById(e.c);
+					if (el!==null && el) el.style.height = newh+"px";
+					el = document.getElementById(e.c+"_wrapper");
+					if (el!==null && el) {
+						el.style.height = newh+"px";
+						el.style.display = "block";
+					}
+				} catch(e){
+					console.log("Failure at Presize of Slider:" + e)
+				}
+			//});
+		  };</script>
+		<script type="text/javascript">
+			var doc = document.documentElement;
+			doc.setAttribute( 'data-useragent', navigator.userAgent );
+		</script>
+		<script>
+// Set to the same value as the web property used on the site
+var gaProperty = 'UA-150904787-1';
+
+// Disable tracking if the opt-out cookie exists.
+var disableStr = 'ga-disable-' + gaProperty;
+if (document.cookie.indexOf(disableStr + '=true') > -1) {
+  window[disableStr] = true;
+}
+
+function my_custom_test() {
+    alert("This worked");
+}
+
+// Opt-out function
+function gaOptout() {
+  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+  window[disableStr] = true;
+  alert("Google Analytics tracking deactivated in your browser for this website");
+}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Simple Collision Detection in JavaScript - The German Coder_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150904787-1', { 'anonymize_ip': true });
+</script>
+	<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><link id="avast_os_ext_custom_font" href="chrome-extension://eofcbnmajmjmplflapaojjnihcjkigck/common/ui/fonts/fonts.css" rel="stylesheet" type="text/css"></head>
+
+<body class="post-template-default single single-post postid-12655 single-format-standard fusion-image-hovers fusion-pagination-sizing fusion-button_type-flat fusion-button_span-yes fusion-button_gradient-linear avada-image-rollover-circle-no avada-image-rollover-yes avada-image-rollover-direction-center_horiz fusion-body ltr fusion-sticky-header no-mobile-slidingbar avada-has-rev-slider-styles fusion-disable-outline fusion-sub-menu-fade mobile-logo-pos-left layout-wide-mode avada-has-boxed-modal-shadow-none layout-scroll-offset-full avada-has-zero-margin-offset-top has-sidebar fusion-top-header menu-text-align-center mobile-menu-design-flyout fusion-show-pagination-text fusion-header-layout-v1 avada-responsive avada-footer-fx-sticky avada-menu-highlight-style-bar fusion-search-form-classic fusion-main-menu-search-overlay fusion-avatar-square avada-sticky-shrinkage avada-dropdown-styles avada-blog-layout-medium avada-blog-archive-layout-large avada-header-shadow-no avada-menu-icon-position-left avada-has-mainmenu-dropdown-divider avada-has-header-100-width avada-has-pagetitle-bg-full avada-has-mobile-menu-search avada-has-main-nav-search-icon avada-has-breadcrumb-mobile-hidden avada-has-pagetitlebar-retina-bg-image avada-has-titlebar-bar_and_content avada-has-transparent-timeline_color avada-has-pagination-padding avada-flyout-menu-direction-fade avada-ec-views-v1 do-animate fusion-no-touch" data-awb-post-id="12655" style="--viewportWidth:1506;" cz-shortcut-listen="true">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 0.49803921568627"></fefuncr><fefuncg type="table" tableValues="0 0.49803921568627"></fefuncg><fefuncb type="table" tableValues="0 0.49803921568627"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 1"></fefuncr><fefuncg type="table" tableValues="0 1"></fefuncg><fefuncb type="table" tableValues="0 1"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.54901960784314 0.98823529411765"></fefuncr><fefuncg type="table" tableValues="0 1"></fefuncg><fefuncb type="table" tableValues="0.71764705882353 0.25490196078431"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 1"></fefuncr><fefuncg type="table" tableValues="0 0.27843137254902"></fefuncg><fefuncb type="table" tableValues="0.5921568627451 0.27843137254902"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 0"></fefuncr><fefuncg type="table" tableValues="0 0.64705882352941"></fefuncg><fefuncb type="table" tableValues="0 1"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.78039215686275 1"></fefuncr><fefuncg type="table" tableValues="0 0.94901960784314"></fefuncg><fefuncb type="table" tableValues="0.35294117647059 0.47058823529412"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.65098039215686 0.40392156862745"></fefuncr><fefuncg type="table" tableValues="0 1"></fefuncg><fefuncb type="table" tableValues="0.44705882352941 0.4"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.098039215686275 1"></fefuncr><fefuncg type="table" tableValues="0 0.66274509803922"></fefuncg><fefuncb type="table" tableValues="0.84705882352941 0.41960784313725"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg>	<a class="skip-link screen-reader-text" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#content">Skip to content</a>
+
+	<div id="boxed-wrapper">
+		<div class="fusion-sides-frame"></div>
+		<div id="wrapper" class="fusion-wrapper">
+			<div id="home" style="position:relative;top:-1px;"></div>
+			
+				
+			<header class="fusion-header-wrapper fusion-is-sticky">
+				<div class="fusion-header-v1 fusion-logo-alignment fusion-logo-left fusion-sticky-menu- fusion-sticky-logo-1 fusion-mobile-logo-1  fusion-mobile-menu-design-flyout fusion-header-has-flyout-menu">
+					<div class="fusion-header-sticky-height" style="height: 65px;"></div>
+<div class="fusion-header fusion-sticky-shadow" style="top: 0px; height: 65px;">
+	<div class="fusion-row">
+					<div class="fusion-header-has-flyout-menu-content">
+					<div class="fusion-logo" data-margin-top="31px" data-margin-bottom="31px" data-margin-left="0px" data-margin-right="0px">
+			<a class="fusion-logo-link" href="https://thegermancoder.com/">
+
+						<!-- standard logo -->
+			<img src="./Simple Collision Detection in JavaScript - The German Coder_files/logo_trimmed.png" srcset="https://thegermancoder.com/wp-content/uploads/2018/09/logo_trimmed.png 1x, https://thegermancoder.com/wp-content/uploads/2018/09/logo_retina.png 2x" width="79" height="48" style="max-height:48px;height:auto;" alt="The German Coder Logo" data-retina_logo_url="https://thegermancoder.com/wp-content/uploads/2018/09/logo_retina.png" class="fusion-standard-logo">
+
+											<!-- mobile logo -->
+				<img src="./Simple Collision Detection in JavaScript - The German Coder_files/logo_trimmed.png" srcset="https://thegermancoder.com/wp-content/uploads/2018/09/logo_trimmed.png 1x, https://thegermancoder.com/wp-content/uploads/2018/09/logo_retina.png 2x" width="79" height="48" style="max-height:48px;height:auto;" alt="The German Coder Logo" data-retina_logo_url="https://thegermancoder.com/wp-content/uploads/2018/09/logo_retina.png" class="fusion-mobile-logo">
+			
+											<!-- sticky header logo -->
+				<img src="./Simple Collision Detection in JavaScript - The German Coder_files/logo_trimmed.png" srcset="https://thegermancoder.com/wp-content/uploads/2018/09/logo_trimmed.png 1x, https://thegermancoder.com/wp-content/uploads/2018/09/logo_retina.png 2x" width="79" height="48" style="max-height:48px;height:auto;" alt="The German Coder Logo" data-retina_logo_url="https://thegermancoder.com/wp-content/uploads/2018/09/logo_retina.png" class="fusion-sticky-logo">
+					</a>
+		</div>		<nav class="fusion-main-menu" aria-label="Main Menu"><div class="fusion-overlay-search" style="max-width: 297.904px;">		<form role="search" class="searchform fusion-search-form  fusion-search-form-classic" method="get" action="https://thegermancoder.com/">
+			<div class="fusion-search-form-content">
+
+				
+				<div class="fusion-search-field search-field">
+					<label><span class="screen-reader-text">Search for:</span>
+													<input type="search" value="" name="s" class="s" placeholder="Search..." required="" aria-required="true" aria-label="Search...">
+											</label>
+				</div>
+				<div class="fusion-search-button search-button">
+					<input type="submit" class="fusion-search-submit searchsubmit" aria-label="Search" value="">
+									</div>
+
+				
+			</div>
+
+
+			
+		</form>
+		<div class="fusion-search-spacer"></div><a href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#" role="button" aria-label="Close Search" class="fusion-close-search"></a></div><ul id="menu-my-menu" class="fusion-menu"><li id="menu-item-11876" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-11876" data-item-id="11876"><a href="https://thegermancoder.com/" class="fusion-bar-highlight"><span class="menu-text">Home</span></a></li><li id="menu-item-12163" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-12163" data-item-id="12163"><a href="https://thegermancoder.com/blog/" class="fusion-bar-highlight"><span class="menu-text">Blog</span></a></li><li id="menu-item-12169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12169" data-item-id="12169"><a href="https://thegermancoder.com/projects/" class="fusion-bar-highlight"><span class="menu-text">Projects</span></a></li><li class="fusion-custom-menu-item fusion-main-menu-search fusion-search-overlay"><a class="fusion-main-menu-icon fusion-bar-highlight" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#" aria-label="Search" data-title="Search" title="Search" role="button" aria-expanded="false"></a></li></ul></nav><div class="fusion-flyout-menu-icons fusion-flyout-mobile-menu-icons">
+	
+	
+			<div class="fusion-flyout-search-toggle">
+			<div class="fusion-toggle-icon">
+				<div class="fusion-toggle-icon-line"></div>
+				<div class="fusion-toggle-icon-line"></div>
+				<div class="fusion-toggle-icon-line"></div>
+			</div>
+			<a class="fusion-icon awb-icon-search" aria-hidden="true" aria-label="Toggle Search" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#"></a>
+		</div>
+	
+				<a class="fusion-flyout-menu-toggle" aria-hidden="true" aria-label="Toggle Menu" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#">
+			<div class="fusion-toggle-icon-line"></div>
+			<div class="fusion-toggle-icon-line"></div>
+			<div class="fusion-toggle-icon-line"></div>
+		</a>
+	</div>
+
+	<div class="fusion-flyout-search">
+				<form role="search" class="searchform fusion-search-form  fusion-search-form-classic" method="get" action="https://thegermancoder.com/">
+			<div class="fusion-search-form-content">
+
+				
+				<div class="fusion-search-field search-field">
+					<label><span class="screen-reader-text">Search for:</span>
+													<input type="search" value="" name="s" class="s" placeholder="Search..." required="" aria-required="true" aria-label="Search...">
+											</label>
+				</div>
+				<div class="fusion-search-button search-button">
+					<input type="submit" class="fusion-search-submit searchsubmit" aria-label="Search" value="">
+									</div>
+
+				
+			</div>
+
+
+			
+		</form>
+			</div>
+
+<div class="fusion-flyout-menu-bg"></div>
+
+<nav class="fusion-mobile-nav-holder fusion-flyout-menu fusion-flyout-mobile-menu" aria-label="Main Menu Mobile"><ul id="mobile-menu-my-menu" class="fusion-menu"><li id="mobile-menu-item-11876" class="fusion-mobile-nav-item" data-item-id="11876" style=""><a href="https://thegermancoder.com/" class="fusion-bar-highlight"><span class="menu-text">Home</span></a></li><li id="mobile-menu-item-12163" class="fusion-mobile-nav-item" data-item-id="12163" style=""><a href="https://thegermancoder.com/blog/" class="fusion-bar-highlight"><span class="menu-text">Blog</span></a></li><li id="mobile-menu-item-12169" class="fusion-mobile-nav-item" data-item-id="12169" style=""><a href="https://thegermancoder.com/projects/" class="fusion-bar-highlight"><span class="menu-text">Projects</span></a></li></ul></nav>
+
+							</div>
+			</div>
+</div>
+				</div>
+				<div class="fusion-clearfix"></div>
+			</header>
+							
+						<div id="sliders-container" class="fusion-slider-visibility">
+					</div>
+				
+				
+			
+			<section class="avada-page-titlebar-wrapper" aria-label="Page Title Bar">
+	<div class="fusion-page-title-bar fusion-page-title-bar-breadcrumbs fusion-page-title-bar-center">
+		<div class="fusion-page-title-row">
+			<div class="fusion-page-title-wrapper" style="opacity: 0.0172549;">
+				<div class="fusion-page-title-captions">
+
+																							<h1 class="entry-title fusion-responsive-typography-calculated" data-fontsize="60" style="--fontSize:60; line-height: 1.2;" data-lineheight="72px">Simple Collision Detection in JavaScript</h1>
+
+											
+																
+				</div>
+
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+						<main id="main" class="clearfix ">
+				<div class="fusion-row" style="">
+
+<section id="content" style="float: left;">
+			<div class="single-navigation clearfix">
+			<a href="https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/" rel="prev">Previous</a>			<a href="https://thegermancoder.com/2020/10/01/tailwind-css-just-another-framework/" rel="next">Next</a>		</div>
+	
+					<article id="post-12655" class="post post-12655 type-post status-publish format-standard has-post-thumbnail hentry category-how-to category-javascript">
+										<span class="entry-title" style="display: none;">Simple Collision Detection in JavaScript</span>
+			
+				
+						<div class="post-content">
+				<div class="fusion-fullwidth fullwidth-box fusion-builder-row-1 nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="background-color: #ffffff;background-position: center center;background-repeat: no-repeat;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-bottom: 0px;margin-top: 0px;border-width: 0px 0px 0px 0px;border-color:rgba(255,255,255,0);border-style:solid;"><div class="fusion-builder-row fusion-row"><div class="fusion-layout-column fusion_builder_column fusion-builder-column-0 fusion_builder_column_1_1 1_1 fusion-one-full fusion-column-first fusion-column-last" style="margin-top:0px;margin-bottom:0px;"><div class="fusion-column-wrapper fusion-flex-column-wrapper-legacy" style="background-position:left top;background-repeat:no-repeat;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;padding: 0px 0px 0px 0px;"><div class="fusion-text fusion-text-1"><p>I’ve been playing around developing some simple games (pun intended^^) from time to time, just for the fun of it. To do that I very often come across some kind of collision detection. I thought I’d show you an easy way of detecting collisions in JavaScript!</p>
+</div><style type="text/css"></style><div class="fusion-title title fusion-title-1 fusion-sep-none fusion-title-text fusion-title-size-three" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;"><h3 class="title-heading-left fusion-responsive-typography-calculated" style="margin:0;--fontSize:30;line-height:1.6;">What is a collision?</h3></div><div class="fusion-text fusion-text-2"><p>Before we even start coding, we need to think about what it actually is that we want to detect. We need some conditions. For this example I’m assuming the two objects colliding are both rectangles. They have x- and y-coordinates as well as a width and a height. So far, so good. That was easy enough. Now the far more important part: how do we know if two rectangles collided?</p>
+<p>Two rectangles collided, when they are overlapping in some way. Having their positions and dimensions we can define the conditions for overlapping. Let’s name our rectangles R1 and R2 for better readability. For R1 and R2 to overlap, there are 4 conditions to be met:</p>
+<ol>
+<li>R1’s right edge needs to be to the right of R2’s left edge</li>
+<li>At the same time, R1’s left edge needs to be to the left of R2’s right edge</li>
+<li>Likewise, R1’s bottom edge needs to be lower than R2’s top edge and</li>
+<li>R1’s top edge needs to be higher than R2’s bottom edge</li>
+</ol>
+<p>If this doesn’t make sense while reading, I suggest sketching, it helps tremendously.</p>
+<p>The first two conditions check for horizontal overlapping, while the others check for it vertically. Notice, that if we were to only check the first condition for horizontal overlapping, R1’s right might be to the right of R2’s right… but R1’s left might be as well, simply putting R1 to the right of R2, without them overlapping at all. This applies to rules 3 and for in the same way.</p>
+</div><style type="text/css"></style><div class="fusion-title title fusion-title-2 fusion-sep-none fusion-title-text fusion-title-size-three" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;"><h3 class="title-heading-left fusion-responsive-typography-calculated" style="margin:0;--fontSize:30;line-height:1.6;">Translating into code</h3></div><div class="fusion-text fusion-text-3"><p>Now that we have our conditions outlined, the toughest part is actually already done. All that’s left is directly translating English to Code:</p>
+</div><style type="text/css" scopped="scopped">.fusion-syntax-highlighter-1 > .CodeMirror, .fusion-syntax-highlighter-1 > .CodeMirror .CodeMirror-gutters {background-color:#302013;}.fusion-syntax-highlighter-1 > .CodeMirror .CodeMirror-gutters { background-color: var(--awb-color2); }.fusion-syntax-highlighter-1 > .CodeMirror .CodeMirror-linenumber { color: var(--awb-color8); }</style><div class="fusion-syntax-highlighter-container fusion-syntax-highlighter-1 fusion-syntax-highlighter-theme-dark" style="opacity: 1; margin: 0px 0px 20px; font-size: 14px; border-width: 1px; border-style: solid; border-color: rgb(42, 46, 56);"><div class="syntax-highlighter-copy-code"><span class="syntax-highlighter-copy-code-title" data-id="fusion_syntax_highlighter_1" style="font-size:14px;">Copy to Clipboard</span></div><textarea class="fusion-syntax-highlighter-textarea code-mirror-initialized" id="fusion_syntax_highlighter_1" data-readonly="nocursor" data-linenumbers="1" data-linewrapping="" data-theme="oceanic-next" data-mode="text/javascript" style="display: none;">function collision(r1, r2) {
+  if (r1.x + r1.width &gt;= r2.x &amp;&amp;
+  	  r1.x &lt;= r2.x + r2.width &amp;&amp;
+	  r1.y + r1.height &gt;= r2.y &amp;&amp;
+  	  r1.y &lt;= r2.y + r2.height)
+  {
+	return true;
+  }
+  
+  return false;
+}</textarea><div class="CodeMirror cm-s-oceanic-next" style="width: 100%; height: auto;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99512px; left: 48.9951px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" disabled="" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; margin-bottom: -16px; border-right-width: 14px; min-height: 316px; min-width: 269.52px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 20px; top: 0px; height: 27.9902px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">function</span> <span class="cm-def">collision</span>(<span class="cm-def">r1</span>, <span class="cm-def">r2</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">if</span> (<span class="cm-variable-2">r1</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">width</span> <span class="cm-operator">&gt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">x</span> <span class="cm-operator">&amp;&amp;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-tab" role="presentation" cm-text="	">  </span>  <span class="cm-variable-2">r1</span>.<span class="cm-property">x</span> <span class="cm-operator">&lt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">width</span> <span class="cm-operator">&amp;&amp;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>  <span class="cm-variable-2">r1</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">height</span> <span class="cm-operator">&gt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">y</span> <span class="cm-operator">&amp;&amp;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-tab" role="presentation" cm-text="	">  </span>  <span class="cm-variable-2">r1</span>.<span class="cm-property">y</span> <span class="cm-operator">&lt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">height</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">return</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">return</span> <span class="cm-atom">false</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 14px; width: 1px; border-bottom: 0px solid transparent; top: 316px;"></div><div class="CodeMirror-gutters" style="height: 330px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div><div class="fusion-text fusion-text-4"><p>That’s is all it takes to detect between two very simple objects. Very easy, very straightforward.</p>
+<p>We could be done now, but let’s go ahead and add one more convenient feature!</p>
+</div><style type="text/css"></style><div class="fusion-title title fusion-title-3 fusion-sep-none fusion-title-text fusion-title-size-three" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;"><h3 class="title-heading-left fusion-responsive-typography-calculated" style="margin:0;--fontSize:30;line-height:1.6;">Where did that come from?</h3></div><div class="fusion-text fusion-text-5"><p>In addition to the fact that a collision occurred at all you oftentimes need to also determine where that collision happend exactly. In my attempt at a Jump ‘n’ Run, for example, it made a huge difference whether my character hit the enemy from above or any other side (a matter of life and death, if you will!). So here’s what I came up with to get that information:</p>
+</div><style type="text/css" scopped="scopped">.fusion-syntax-highlighter-2 > .CodeMirror, .fusion-syntax-highlighter-2 > .CodeMirror .CodeMirror-gutters {background-color:#302013;}.fusion-syntax-highlighter-2 > .CodeMirror .CodeMirror-gutters { background-color: var(--awb-color2); }.fusion-syntax-highlighter-2 > .CodeMirror .CodeMirror-linenumber { color: var(--awb-color8); }</style><div class="fusion-syntax-highlighter-container fusion-syntax-highlighter-2 fusion-syntax-highlighter-theme-dark" style="opacity: 1; margin: 0px 0px 20px; font-size: 14px; border-width: 1px; border-style: solid; border-color: rgb(42, 46, 56);"><div class="syntax-highlighter-copy-code"><span class="syntax-highlighter-copy-code-title" data-id="fusion_syntax_highlighter_2" style="font-size:14px;">Copy to Clipboard</span></div><textarea class="fusion-syntax-highlighter-textarea code-mirror-initialized" id="fusion_syntax_highlighter_2" data-readonly="nocursor" data-linenumbers="1" data-linewrapping="" data-theme="oceanic-next" data-mode="text/javascript" style="display: none;">// check for collision up here
+
+const bottom_diff = r2.y + r2.height - r1.y;
+const top_diff = r1.y + r1.height - r2.y;
+const left_diff = r1.x + r1.width - r2.x;
+const right_diff = r2.x + r2.width - r1.x;
+const min = Math.min(bottom_diff, top_diff, left_diff, right_diff);
+
+let collision = {
+	bottom: top_diff == min,
+	right: left_diff == min,
+	left: right_diff == min,
+	top: bottom_diff == min
+}</textarea><div class="CodeMirror cm-s-oceanic-next" style="width: 100%; height: auto;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99512px; left: 48.9951px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" disabled="" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; margin-bottom: -16px; border-right-width: 14px; min-height: 400px; min-width: 538.87px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 20px; top: 0px; height: 27.9902px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// check for collision up here</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">bottom_diff</span> <span class="cm-operator">=</span> <span class="cm-variable">r2</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable">r2</span>.<span class="cm-property">height</span> <span class="cm-operator">-</span> <span class="cm-variable">r1</span>.<span class="cm-property">y</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">top_diff</span> <span class="cm-operator">=</span> <span class="cm-variable">r1</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable">r1</span>.<span class="cm-property">height</span> <span class="cm-operator">-</span> <span class="cm-variable">r2</span>.<span class="cm-property">y</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">left_diff</span> <span class="cm-operator">=</span> <span class="cm-variable">r1</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable">r1</span>.<span class="cm-property">width</span> <span class="cm-operator">-</span> <span class="cm-variable">r2</span>.<span class="cm-property">x</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">right_diff</span> <span class="cm-operator">=</span> <span class="cm-variable">r2</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable">r2</span>.<span class="cm-property">width</span> <span class="cm-operator">-</span> <span class="cm-variable">r1</span>.<span class="cm-property">x</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">min</span> <span class="cm-operator">=</span> <span class="cm-variable">Math</span>.<span class="cm-property">min</span>(<span class="cm-variable">bottom_diff</span>, <span class="cm-variable">top_diff</span>, <span class="cm-variable">left_diff</span>, <span class="cm-variable">right_diff</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">collision</span> <span class="cm-operator">=</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-property">bottom</span>: <span class="cm-variable">top_diff</span> <span class="cm-operator">==</span> <span class="cm-variable">min</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-property">right</span>: <span class="cm-variable">left_diff</span> <span class="cm-operator">==</span> <span class="cm-variable">min</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-property">left</span>: <span class="cm-variable">right_diff</span> <span class="cm-operator">==</span> <span class="cm-variable">min</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-property">top</span>: <span class="cm-variable">bottom_diff</span> <span class="cm-operator">==</span> <span class="cm-variable">min</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 14px; width: 1px; border-bottom: 0px solid transparent; top: 400px;"></div><div class="CodeMirror-gutters" style="height: 414px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div><div class="fusion-text fusion-text-6"><p>What am I doing here?</p>
+<p>First I’m calculating the distances between the edges of each side: bottom_diff represents the distance from R1’s bottom edge to R2’s top edge, left_diff on the other hand represents the distance between R1’s left edge and R2’s right edge. To turn this information into a direction, I first need to find the smallest distance of them all. Imagine R1 being my character and R2 being an enemy: if the character jumps on an enemy, bottom_diff is going to be way smaller than top_diff. If the character has a height of 20px, bottom_diff might be 0 or 1 while top_diff would be 20 or 19.</p>
+<p>Bare in mind that this information is somewhat “directed”. The above example tells you “R1 collided with R2 from above” because the character was R1. If you were to pass the enemy as R1 and the character as R2 you would get the exact opposite!</p>
+<p>To wrap this up, let’s put it all in a neat little function that you can re-use whenever you need to check for collisions between two rectangles:</p>
+</div><style type="text/css" scopped="scopped">.fusion-syntax-highlighter-3 > .CodeMirror, .fusion-syntax-highlighter-3 > .CodeMirror .CodeMirror-gutters {background-color:#302013;}.fusion-syntax-highlighter-3 > .CodeMirror .CodeMirror-gutters { background-color: var(--awb-color2); }.fusion-syntax-highlighter-3 > .CodeMirror .CodeMirror-linenumber { color: var(--awb-color8); }</style><div class="fusion-syntax-highlighter-container fusion-syntax-highlighter-3 fusion-syntax-highlighter-theme-dark" style="opacity: 1; margin: 0px 0px 20px; font-size: 14px; border-width: 1px; border-style: solid; border-color: rgb(42, 46, 56);"><div class="syntax-highlighter-copy-code"><span class="syntax-highlighter-copy-code-title" data-id="fusion_syntax_highlighter_3" style="font-size:14px;">Copy to Clipboard</span></div><textarea class="fusion-syntax-highlighter-textarea code-mirror-initialized" id="fusion_syntax_highlighter_3" data-readonly="nocursor" data-linenumbers="1" data-linewrapping="" data-theme="oceanic-next" data-mode="text/javascript" style="display: none;">function collision(r1, r2) {
+  if (r1.x + r1.width &gt;= r2.x &amp;&amp;
+  	  r1.x &lt;= r2.x + r2.width &amp;&amp;
+  	  r1.y + r1.height &gt;= r2.y &amp;&amp;
+  	  r1.y &lt;= r2.y + r2.height)
+  {
+    const top_diff = r2.y + r2.height - r1.y;
+    const bottom_diff = r1.y + r1.height - r2.y;
+    const left_diff = r2.x + r2.width - r1.x;
+    const right_diff = r1.x + r1.width - r2.x;
+
+    const min = Math.min(bottom_diff, top_diff, left_diff, right_diff);
+
+    return {
+      	bottom: bottom_diff == min,
+        right: right_diff == min,
+        left: left_diff == min,
+        top: top_diff == min
+    }
+  }
+  return null;
+}</textarea><div class="CodeMirror cm-s-oceanic-next" style="width: 100%; height: auto;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99512px; left: 48.9951px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" disabled="" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="bottom: 0px;"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; margin-bottom: -16px; border-right-width: 14px; min-height: 624px; min-width: 569.667px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>22</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 20px; top: 0px; height: 27.9902px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">function</span> <span class="cm-def">collision</span>(<span class="cm-def">r1</span>, <span class="cm-def">r2</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">if</span> (<span class="cm-variable-2">r1</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">width</span> <span class="cm-operator">&gt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">x</span> <span class="cm-operator">&amp;&amp;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-tab" role="presentation" cm-text="	">  </span>  <span class="cm-variable-2">r1</span>.<span class="cm-property">x</span> <span class="cm-operator">&lt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">width</span> <span class="cm-operator">&amp;&amp;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-tab" role="presentation" cm-text="	">  </span>  <span class="cm-variable-2">r1</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">height</span> <span class="cm-operator">&gt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">y</span> <span class="cm-operator">&amp;&amp;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-tab" role="presentation" cm-text="	">  </span>  <span class="cm-variable-2">r1</span>.<span class="cm-property">y</span> <span class="cm-operator">&lt;=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">height</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">const</span> <span class="cm-def">top_diff</span> <span class="cm-operator">=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">height</span> <span class="cm-operator">-</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">y</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">const</span> <span class="cm-def">bottom_diff</span> <span class="cm-operator">=</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">y</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">height</span> <span class="cm-operator">-</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">y</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">const</span> <span class="cm-def">left_diff</span> <span class="cm-operator">=</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">width</span> <span class="cm-operator">-</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">x</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">const</span> <span class="cm-def">right_diff</span> <span class="cm-operator">=</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">x</span> <span class="cm-operator">+</span> <span class="cm-variable-2">r1</span>.<span class="cm-property">width</span> <span class="cm-operator">-</span> <span class="cm-variable-2">r2</span>.<span class="cm-property">x</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">const</span> <span class="cm-def">min</span> <span class="cm-operator">=</span> <span class="cm-variable">Math</span>.<span class="cm-property">min</span>(<span class="cm-variable-2">bottom_diff</span>, <span class="cm-variable-2">top_diff</span>, <span class="cm-variable-2">left_diff</span>, <span class="cm-variable-2">right_diff</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">return</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-property">bottom</span>: <span class="cm-variable-2">bottom_diff</span> <span class="cm-operator">==</span> <span class="cm-variable-2">min</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-property">right</span>: <span class="cm-variable-2">right_diff</span> <span class="cm-operator">==</span> <span class="cm-variable-2">min</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-property">left</span>: <span class="cm-variable-2">left_diff</span> <span class="cm-operator">==</span> <span class="cm-variable-2">min</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-property">top</span>: <span class="cm-variable-2">top_diff</span> <span class="cm-operator">==</span> <span class="cm-variable-2">min</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">return</span> <span class="cm-atom">null</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9951px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 14px; width: 1px; border-bottom: 0px solid transparent; top: 624px;"></div><div class="CodeMirror-gutters" style="height: 638px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div><style type="text/css"></style><div class="fusion-title title fusion-title-4 fusion-sep-none fusion-title-text fusion-title-size-three" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;"><h3 class="title-heading-left fusion-responsive-typography-calculated" style="margin:0;--fontSize:30;line-height:1.6;">Conclusion</h3></div><div class="fusion-text fusion-text-7"><p>There you go! Once you get your head around the conditions of collisions in theory, coding it is a piece of cake. The actual challenge in collision detection lies prediction, minimizing computation and all other kinds of really exciting stuff that would be beyond the scope of this article.</p>
+<p>If you want to see the above code in action, check out my attempt at a <a href="https://github.com/paranerd/breakout">Breakout</a> clone.</p>
+<p>Happy coding!</p>
+</div><div class="fusion-clearfix"></div></div></div></div></div>
+							</div>
+
+												<div class="fusion-meta-info"><div class="fusion-meta-info-wrapper">By <span class="vcard"><span class="fn"><a href="https://thegermancoder.com/author/paranerd/" title="Posts by paranerd" rel="author">paranerd</a></span></span><span class="fusion-inline-sep">|</span><span class="updated rich-snippet-hidden">2021-01-23T23:41:58+01:00</span><span>April 5th, 2019</span><span class="fusion-inline-sep">|</span><span class="fusion-comments"><a href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#respond">0 Comments</a></span></div></div>																								<section class="related-posts single-related-posts">
+				<div class="fusion-title fusion-title-size-three sep-none fusion-sep-none" style="margin-top:0px;margin-bottom:0px;">
+				<h3 class="title-heading-left fusion-responsive-typography-calculated" style="margin: 0px; --fontSize:20; line-height: 1.5; --minFontSize:20;" data-fontsize="20" data-lineheight="30px">
+					Related Posts				</h3>
+			</div>
+			
+	
+	
+	
+					<div class="fusion-carousel fusion-carousel-title-below-image" data-imagesize="auto" data-metacontent="yes" data-autoplay="no" data-touchscroll="yes" data-columns="3" data-itemmargin="44px" data-itemwidth="180" data-scrollitems="">
+		<div class="fusion-carousel-positioner" style="margin-left: -44px;">
+			<div class="fusion-carousel-wrapper fusion-carousel-swipe" style="text-align: start; float: none; position: relative; inset: auto; z-index: auto; width: 864px; height: 266.324px; margin: 0px; overflow: hidden;"><ul class="fusion-carousel-holder" style="text-align: left; float: none; position: absolute; inset: auto auto auto 0px; margin: 0px; width: 6624px; height: 266.324px;">
+																							<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/code.png" class="attachment-full size-full wp-post-image" alt="code" srcset="https://thegermancoder.com/wp-content/uploads/2018/11/code-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/11/code-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/11/code-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/11/code-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/11/code-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/11/code.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/">How To Parse CSV With JavaScript</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/" aria-label="How To Parse CSV With JavaScript"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/11/29/how-to-parse-csv-with-javascript/" target="_self" title="How To Parse CSV With JavaScript">How To Parse CSV With JavaScript</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">November 29th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/upload.png" class="attachment-full size-full wp-post-image" alt="upload file" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/upload-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/upload-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/upload-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/upload-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/upload-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/upload.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/29/how-to-read-files-with-javascript-and-filereader/">How To Read Files With JavaScript And FileReader</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/29/how-to-read-files-with-javascript-and-filereader/" aria-label="How To Read Files With JavaScript And FileReader"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/29/how-to-read-files-with-javascript-and-filereader/" target="_self" title="How To Read Files With JavaScript And FileReader">How To Read Files With JavaScript And FileReader</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 29th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/chat.png" class="attachment-full size-full wp-post-image" alt="Chat" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/chat-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/chat-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/chat-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/chat-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/chat-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/chat.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/17/how-to-build-a-live-chat-with-websockets/">How To Build A Live Chat With WebSockets</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/17/how-to-build-a-live-chat-with-websockets/" aria-label="How To Build A Live Chat With WebSockets"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/17/how-to-build-a-live-chat-with-websockets/" target="_self" title="How To Build A Live Chat With WebSockets">How To Build A Live Chat With WebSockets</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 17th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/camera.png" class="attachment-full size-full wp-post-image" alt="Camera" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/camera-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/camera-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/camera-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/camera-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/camera-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/camera.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/09/how-to-take-a-screenshot-with-javascript/">How To Take A Screenshot With JavaScript</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/09/how-to-take-a-screenshot-with-javascript/" aria-label="How To Take A Screenshot With JavaScript"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/09/how-to-take-a-screenshot-with-javascript/" target="_self" title="How To Take A Screenshot With JavaScript">How To Take A Screenshot With JavaScript</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 9th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/usb.png" class="attachment-full size-full wp-post-image" alt="USB" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/usb-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/usb-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/usb-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/usb-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/usb-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/usb.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/08/how-to-start-scripts-on-usb-connect/">How To Start Scripts On USB-Connect</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/08/how-to-start-scripts-on-usb-connect/" aria-label="How To Start Scripts On USB-Connect"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/08/how-to-start-scripts-on-usb-connect/" target="_self" title="How To Start Scripts On USB-Connect">How To Start Scripts On USB-Connect</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 8th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/hand_point_up.png" class="attachment-full size-full wp-post-image" alt="Hand point up" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/hand_point_up-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/hand_point_up-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/hand_point_up-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/hand_point_up-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/hand_point_up-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/hand_point_up.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/08/how-to-detect-swipes-in-javascript/">How To Detect Swipes In JavaScript</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/08/how-to-detect-swipes-in-javascript/" aria-label="How To Detect Swipes In JavaScript"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/08/how-to-detect-swipes-in-javascript/" target="_self" title="How To Detect Swipes In JavaScript">How To Detect Swipes In JavaScript</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 8th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/pwa.png" class="attachment-full size-full wp-post-image" alt="" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/pwa-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-debugging/">Hello Progressive Web App | Debugging</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-debugging/" aria-label="Hello Progressive Web App | Debugging"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-debugging/" target="_self" title="Hello Progressive Web App | Debugging">Hello Progressive Web App | Debugging</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 5th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/pwa.png" class="attachment-full size-full wp-post-image" alt="" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/pwa-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-caching-strategies/">Hello Progressive Web App | Caching Strategies</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-caching-strategies/" aria-label="Hello Progressive Web App | Caching Strategies"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-caching-strategies/" target="_self" title="Hello Progressive Web App | Caching Strategies">Hello Progressive Web App | Caching Strategies</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 5th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/pwa.png" class="attachment-full size-full wp-post-image" alt="" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/pwa-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-the-service-worker/">Hello Progressive Web App | The Service Worker</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-the-service-worker/" aria-label="Hello Progressive Web App | The Service Worker"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-the-service-worker/" target="_self" title="Hello Progressive Web App | The Service Worker">Hello Progressive Web App | The Service Worker</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 5th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+																			<li class="fusion-carousel-item" style="margin-left: 44px; width: 244px;">
+						<div class="fusion-carousel-item-wrapper" style="visibility: inherit;">
+							<div class="fusion-image-wrapper" aria-haspopup="true">
+				<img width="1920" height="1080" src="./Simple Collision Detection in JavaScript - The German Coder_files/pwa.png" class="attachment-full size-full wp-post-image" alt="" srcset="https://thegermancoder.com/wp-content/uploads/2018/10/pwa-200x113.png 200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-400x225.png 400w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-600x338.png 600w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-800x450.png 800w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa-1200x675.png 1200w, https://thegermancoder.com/wp-content/uploads/2018/10/pwa.png 1920w" sizes="(min-width: 2200px) 100vw, (min-width: 824px) 274px, (min-width: 732px) 411px, (min-width: 640px) 732px, "><div class="fusion-rollover">
+	<div class="fusion-rollover-content">
+
+														<a class="fusion-rollover-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-the-manifest/">Hello Progressive Web App | The Manifest</a>
+			
+								
+		
+								
+								
+		
+						<a class="fusion-link-wrapper" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-the-manifest/" aria-label="Hello Progressive Web App | The Manifest"></a>
+	</div>
+</div>
+</div>
+																							<h4 class="fusion-carousel-title fusion-responsive-typography-calculated" data-fontsize="24" style="--fontSize:24; line-height: 1.25;" data-lineheight="30px">
+									<a class="fusion-related-posts-title-link" href="https://thegermancoder.com/2018/10/05/hello-progressive-web-app-the-manifest/" target="_self" title="Hello Progressive Web App | The Manifest">Hello Progressive Web App | The Manifest</a>
+								</h4>
+
+								<div class="fusion-carousel-meta">
+									
+									<span class="fusion-date">October 5th, 2018</span>
+
+																	</div><!-- fusion-carousel-meta -->
+													</div><!-- fusion-carousel-item-wrapper -->
+					</li>
+							</ul></div><!-- fusion-carousel-holder -->
+						<div class="fusion-carousel-nav" style="visibility: inherit;"><button class="fusion-nav-prev" aria-label="Previous" style="margin-left: 44px;"></button><button class="fusion-nav-next" aria-label="Next" style="left: 833.995px;"></button></div>
+		</div><!-- fusion-carousel-positioner -->
+	</div><!-- fusion-carousel -->
+</section><!-- related-posts -->
+
+
+													
+
+
+													</article>
+	</section>
+<aside id="sidebar" class="sidebar fusion-widget-area fusion-content-widget-area fusion-sidebar-right fusion-blogsidebar" style="float: right;">
+											
+					<section id="search-2" class="widget widget_search" style="border-width: 1px;border-style: solid;border-color:transparent;">		<form role="search" class="searchform fusion-search-form  fusion-search-form-classic" method="get" action="https://thegermancoder.com/">
+			<div class="fusion-search-form-content">
+
+				
+				<div class="fusion-search-field search-field">
+					<label><span class="screen-reader-text">Search for:</span>
+													<input type="search" value="" name="s" class="s" placeholder="Search..." required="" aria-required="true" aria-label="Search...">
+											</label>
+				</div>
+				<div class="fusion-search-button search-button">
+					<input type="submit" class="fusion-search-submit searchsubmit" aria-label="Search" value="">
+									</div>
+
+				
+			</div>
+
+
+			
+		</form>
+		</section>
+		<section id="recent-posts-2" class="widget widget_recent_entries">
+		<div class="heading"><h4 class="widget-title fusion-responsive-typography-calculated" data-fontsize="13" style="--fontSize:13; line-height: 1.25; --minFontSize:13;" data-lineheight="16.25px">Latest posts</h4></div>
+		<ul>
+											<li>
+					<a href="https://thegermancoder.com/2021/08/09/how-to-use-lets-encrypt-with-docker-and-cloudflare/">How to use Let’s Encrypt with Docker and Cloudflare</a>
+									</li>
+											<li>
+					<a href="https://thegermancoder.com/2021/08/09/how-to-set-up-your-own-vpn-using-wireguard/">How to set up your own VPN using WireGuard</a>
+									</li>
+											<li>
+					<a href="https://thegermancoder.com/2020/10/25/how-to-use-tailwind-css-with-angular-10-update/">How to use Tailwind CSS with Angular 10 (Update)</a>
+									</li>
+											<li>
+					<a href="https://thegermancoder.com/2020/10/01/how-to-use-tailwind-css-with-angular-10/">How to use Tailwind CSS with Angular 10</a>
+									</li>
+											<li>
+					<a href="https://thegermancoder.com/2020/10/01/tailwind-css-just-another-framework/">Tailwind CSS – Just another Framework?</a>
+									</li>
+					</ul>
+
+		</section><section id="archives-2" class="widget widget_archive"><div class="heading"><h4 class="widget-title fusion-responsive-typography-calculated" data-fontsize="13" style="--fontSize:13; line-height: 1.25; --minFontSize:13;" data-lineheight="16.25px">Archives</h4></div>
+			<ul>
+					<li><a href="https://thegermancoder.com/2021/08/">August 2021</a></li>
+	<li><a href="https://thegermancoder.com/2020/10/">October 2020</a></li>
+	<li><a href="https://thegermancoder.com/2019/04/">April 2019</a></li>
+	<li><a href="https://thegermancoder.com/2018/11/">November 2018</a></li>
+	<li><a href="https://thegermancoder.com/2018/10/">October 2018</a></li>
+	<li><a href="https://thegermancoder.com/2018/09/">September 2018</a></li>
+			</ul>
+
+			</section><section id="categories-2" class="widget widget_categories"><div class="heading"><h4 class="widget-title fusion-responsive-typography-calculated" data-fontsize="13" style="--fontSize:13; line-height: 1.25; --minFontSize:13;" data-lineheight="16.25px">Categories</h4></div>
+			<ul>
+					<li class="cat-item cat-item-71"><a href="https://thegermancoder.com/category/bash/">Bash</a>
+</li>
+	<li class="cat-item cat-item-65"><a href="https://thegermancoder.com/category/css/">CSS</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://thegermancoder.com/category/general/">General</a>
+</li>
+	<li class="cat-item cat-item-67"><a href="https://thegermancoder.com/category/hello-world/">Hello World</a>
+</li>
+	<li class="cat-item cat-item-68"><a href="https://thegermancoder.com/category/how-to/">How To</a>
+</li>
+	<li class="cat-item cat-item-64"><a href="https://thegermancoder.com/category/html/">HTML</a>
+</li>
+	<li class="cat-item cat-item-66"><a href="https://thegermancoder.com/category/javascript/">JavaScript</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="https://thegermancoder.com/category/mysql/">MySQL</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="https://thegermancoder.com/category/php/">PHP</a>
+</li>
+	<li class="cat-item cat-item-59"><a href="https://thegermancoder.com/category/projects/">Projects</a>
+</li>
+	<li class="cat-item cat-item-61"><a href="https://thegermancoder.com/category/server/">Server</a>
+</li>
+			</ul>
+
+			</section>			</aside>
+						
+					</div>  <!-- fusion-row -->
+				</main>  <!-- #main -->
+				
+				
+								
+					
+		<div class="fusion-footer">
+					
+	<footer class="fusion-footer-widget-area fusion-widget-area fusion-footer-widget-area-center">
+		<div class="fusion-row">
+			<div class="fusion-columns fusion-columns-1 fusion-widget-area">
+				
+																									<div class="fusion-column fusion-column-last col-lg-12 col-md-12 col-sm-12">
+							<section id="media_image-2" class="fusion-footer-widget-column widget widget_media_image"><img width="79" height="48" src="./Simple Collision Detection in JavaScript - The German Coder_files/logo_trimmed.png" class="image wp-image-12087  attachment-full size-full" alt="" style="max-width: 100%; height: auto;"><div style="clear:both;"></div></section>																					</div>
+																																																						
+				<div class="fusion-clearfix"></div>
+			</div> <!-- fusion-columns -->
+		</div> <!-- fusion-row -->
+	</footer> <!-- fusion-footer-widget-area -->
+
+	
+	<footer id="footer" class="fusion-footer-copyright-area fusion-footer-copyright-center">
+		<div class="fusion-row">
+			<div class="fusion-copyright-content">
+
+				<div class="fusion-copyright-notice">
+		<div>
+		© Copyright 2012 -&nbsp;<script>document.write(new Date().getFullYear());</script>2023&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;The German Coder   |&nbsp;&nbsp;&nbsp;All Rights Reserved   |   <a href="https://thegermancoder.com/privacy/">Privacy</a>   |   <a href="https://thegermancoder.com/impressum/">Impressum</a>	</div>
+</div>
+<div class="fusion-social-links-footer">
+	<div class="fusion-social-networks"><div class="fusion-social-networks-wrapper"><a class="awb-custom-image custom fusion-social-network-icon fusion-tooltip fusion-custom awb-icon-custom" style="position:relative;" data-placement="top" data-title="GitHub" data-toggle="tooltip" title="" href="https://github.com/paranerd" target="_blank" rel="noopener noreferrer" data-original-title="GitHub"><span class="screen-reader-text">GitHub</span><img src="./Simple Collision Detection in JavaScript - The German Coder_files/github_logo-1.png" style="width:auto;" alt="GitHub"></a><a class="fusion-social-network-icon fusion-tooltip fusion-youtube awb-icon-youtube" style="" data-placement="top" data-title="YouTube" data-toggle="tooltip" title="" href="https://www.youtube.com/channel/UC9W_n_6eXQcjeXVbaKHSuGg" target="_blank" rel="noopener noreferrer" data-original-title="YouTube"><span class="screen-reader-text">YouTube</span></a><a class="fusion-social-network-icon fusion-tooltip fusion-mail awb-icon-mail" style="" data-placement="top" data-title="Email" data-toggle="tooltip" title="" href="mailto:paranerd.development@gmail.com" target="_self" rel="noopener noreferrer" data-original-title="Email"><span class="screen-reader-text">Email</span></a><a class="fusion-social-network-icon fusion-tooltip fusion-linkedin awb-icon-linkedin" style="" data-placement="top" data-title="LinkedIn" data-toggle="tooltip" title="" href="https://www.linkedin.com/in/thegermancoder" target="_blank" rel="noopener noreferrer" data-original-title="LinkedIn"><span class="screen-reader-text">LinkedIn</span></a></div></div></div>
+
+			</div> <!-- fusion-fusion-copyright-content -->
+		</div> <!-- fusion-row -->
+	</footer> <!-- #footer -->
+		</div> <!-- fusion-footer -->
+
+		
+					<div class="fusion-sliding-bar-wrapper">
+											</div>
+
+												</div> <!-- wrapper -->
+		</div> <!-- #boxed-wrapper -->
+		<div class="fusion-top-frame"></div>
+		<div class="fusion-bottom-frame"></div>
+		<div class="fusion-boxed-shadow"></div>
+		<a class="fusion-one-page-text-link fusion-page-load-link" tabindex="-1" href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#" aria-hidden="true">Page load link</a>
+
+		<div class="avada-footer-scripts">
+			
+		<script>
+			window.RS_MODULES = window.RS_MODULES || {};
+			window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+			window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+			window.RS_MODULES.defered = false;
+			window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+			window.RS_MODULES.type = 'compiled';
+		</script>
+		<div class="fusion-privacy-bar fusion-privacy-bar-bottom">
+	<div class="fusion-privacy-bar-main">
+		<span>This website uses cookies and third party services.					</span>
+		<a href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#" class="fusion-privacy-bar-acceptance fusion-button fusion-button-default fusion-button-default-size fusion-button-span-no" data-alt-text="Update Settings" data-orig-text="Ok">
+			Ok		</a>
+			</div>
+	</div>
+<link rel="stylesheet" id="wp-codemirror-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/codemirror.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="code-editor-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/code-editor.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/style.min.css" type="text/css" media="all">
+<style id="wp-block-library-theme-inline-css" type="text/css">
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}
+</style>
+<link rel="stylesheet" id="rs-plugin-settings-css" href="./Simple Collision Detection in JavaScript - The German Coder_files/rs6.css" type="text/css" media="all">
+<style id="rs-plugin-settings-inline-css" type="text/css">
+#rs-demo-id {}
+</style>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/index.js.download" id="swv-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/thegermancoder.com\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/index.js(1).download" id="contact-form-7-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/codemirror.min.js.download" id="wp-codemirror-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/underscore.min.js.download" id="underscore-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/code-editor.min.js.download" id="code-editor-js"></script>
+<script type="text/javascript" id="code-editor-js-after">
+jQuery.extend( wp.codeEditor.defaultSettings, {"codemirror":{"indentUnit":4,"indentWithTabs":true,"inputStyle":"contenteditable","lineNumbers":true,"lineWrapping":true,"styleActiveLine":true,"continueComments":true,"extraKeys":{"Ctrl-Space":"autocomplete","Ctrl-\/":"toggleComment","Cmd-\/":"toggleComment","Alt-F":"findPersistent","Ctrl-F":"findPersistent","Cmd-F":"findPersistent"},"direction":"ltr","gutters":[],"mode":""},"csslint":{"errors":true,"box-model":true,"display-property-grouping":true,"duplicate-properties":true,"known-properties":true,"outline-none":true},"jshint":{"boss":true,"curly":true,"eqeqeq":true,"eqnull":true,"es3":true,"expr":true,"immed":true,"noarg":true,"nonbsp":true,"onevar":true,"quotmark":"single","trailing":true,"undef":true,"unused":true,"browser":true,"globals":{"_":false,"Backbone":false,"jQuery":false,"JSON":false,"wp":false}},"htmlhint":{"tagname-lowercase":true,"attr-lowercase":true,"attr-value-double-quotes":false,"doctype-first":false,"tag-pair":true,"spec-char-escape":true,"id-unique":true,"src-not-empty":true,"attr-no-duplication":true,"alt-require":true,"space-tab-mixed-disabled":"tab","attr-unsafe-chars":true}} );
+jQuery.extend( wp.codeEditor.defaultSettings, {"codemirror":{"indentUnit":4,"indentWithTabs":true,"inputStyle":"contenteditable","lineNumbers":true,"lineWrapping":true,"styleActiveLine":true,"continueComments":true,"extraKeys":{"Ctrl-Space":"autocomplete","Ctrl-\/":"toggleComment","Cmd-\/":"toggleComment","Alt-F":"findPersistent","Ctrl-F":"findPersistent","Cmd-F":"findPersistent"},"direction":"ltr","gutters":[],"mode":""},"csslint":{"errors":true,"box-model":true,"display-property-grouping":true,"duplicate-properties":true,"known-properties":true,"outline-none":true},"jshint":{"boss":true,"curly":true,"eqeqeq":true,"eqnull":true,"es3":true,"expr":true,"immed":true,"noarg":true,"nonbsp":true,"onevar":true,"quotmark":"single","trailing":true,"undef":true,"unused":true,"browser":true,"globals":{"_":false,"Backbone":false,"jQuery":false,"JSON":false,"wp":false}},"htmlhint":{"tagname-lowercase":true,"attr-lowercase":true,"attr-value-double-quotes":false,"doctype-first":false,"tag-pair":true,"spec-char-escape":true,"id-unique":true,"src-not-empty":true,"attr-no-duplication":true,"alt-require":true,"space-tab-mixed-disabled":"tab","attr-unsafe-chars":true}} );
+jQuery.extend( wp.codeEditor.defaultSettings, {"codemirror":{"indentUnit":4,"indentWithTabs":true,"inputStyle":"contenteditable","lineNumbers":true,"lineWrapping":true,"styleActiveLine":true,"continueComments":true,"extraKeys":{"Ctrl-Space":"autocomplete","Ctrl-\/":"toggleComment","Cmd-\/":"toggleComment","Alt-F":"findPersistent","Ctrl-F":"findPersistent","Cmd-F":"findPersistent"},"direction":"ltr","gutters":[],"mode":""},"csslint":{"errors":true,"box-model":true,"display-property-grouping":true,"duplicate-properties":true,"known-properties":true,"outline-none":true},"jshint":{"boss":true,"curly":true,"eqeqeq":true,"eqnull":true,"es3":true,"expr":true,"immed":true,"noarg":true,"nonbsp":true,"onevar":true,"quotmark":"single","trailing":true,"undef":true,"unused":true,"browser":true,"globals":{"_":false,"Backbone":false,"jQuery":false,"JSON":false,"wp":false}},"htmlhint":{"tagname-lowercase":true,"attr-lowercase":true,"attr-value-double-quotes":false,"doctype-first":false,"tag-pair":true,"spec-char-escape":true,"id-unique":true,"src-not-empty":true,"attr-no-duplication":true,"alt-require":true,"space-tab-mixed-disabled":"tab","attr-unsafe-chars":true}} );
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/cssua.js.download" id="cssua-js"></script>
+<script type="text/javascript" id="fusion-animations-js-extra">
+/* <![CDATA[ */
+var fusionAnimationsVars = {"status_css_animations":"desktop"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-animations.js.download" id="fusion-animations-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-vertical-menu-widget.js.download" id="avada-vertical-menu-widget-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/modernizr.js.download" id="modernizr-js"></script>
+<script type="text/javascript" id="fusion-js-extra">
+/* <![CDATA[ */
+var fusionJSVars = {"visibility_small":"640","visibility_medium":"1024"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion.js.download" id="fusion-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/bootstrap.transition.js.download" id="bootstrap-transition-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/bootstrap.tooltip.js.download" id="bootstrap-tooltip-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.requestAnimationFrame.js.download" id="jquery-request-animation-frame-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.carouFredSel.js.download" id="jquery-caroufredsel-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.easing.js.download" id="jquery-easing-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.fitvids.js.download" id="jquery-fitvids-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.flexslider.js.download" id="jquery-flexslider-js"></script>
+<script type="text/javascript" id="jquery-lightbox-js-extra">
+/* <![CDATA[ */
+var fusionLightboxVideoVars = {"lightbox_video_width":"1280","lightbox_video_height":"720"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.ilightbox.js.download" id="jquery-lightbox-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.mousewheel.js.download" id="jquery-mousewheel-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.placeholder.js.download" id="jquery-placeholder-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.touchSwipe.js.download" id="jquery-touch-swipe-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.fade.js.download" id="jquery-fade-js"></script>
+<script type="text/javascript" id="fusion-equal-heights-js-extra">
+/* <![CDATA[ */
+var fusionEqualHeightVars = {"content_break_point":"800"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-equal-heights.js.download" id="fusion-equal-heights-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-parallax.js.download" id="fusion-parallax-js"></script>
+<script type="text/javascript" id="fusion-video-general-js-extra">
+/* <![CDATA[ */
+var fusionVideoGeneralVars = {"status_vimeo":"1","status_yt":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-video-general.js.download" id="fusion-video-general-js"></script>
+<script type="text/javascript" id="fusion-video-bg-js-extra">
+/* <![CDATA[ */
+var fusionVideoBgVars = {"status_vimeo":"1","status_yt":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-video-bg.js.download" id="fusion-video-bg-js"></script>
+<script type="text/javascript" id="fusion-lightbox-js-extra">
+/* <![CDATA[ */
+var fusionLightboxVars = {"status_lightbox":"1","lightbox_gallery":"1","lightbox_skin":"metro-black","lightbox_title":"1","lightbox_arrows":"1","lightbox_slideshow_speed":"5000","lightbox_autoplay":"","lightbox_opacity":"0.85","lightbox_desc":"1","lightbox_social":"1","lightbox_social_links":{"facebook":{"source":"https:\/\/www.facebook.com\/sharer.php?u={URL}","text":"Share on Facebook"},"twitter":{"source":"https:\/\/twitter.com\/share?url={URL}","text":"Share on Twitter"},"reddit":{"source":"https:\/\/reddit.com\/submit?url={URL}","text":"Share on Reddit"},"linkedin":{"source":"https:\/\/www.linkedin.com\/shareArticle?mini=true&url={URL}","text":"Share on LinkedIn"},"tumblr":{"source":"https:\/\/www.tumblr.com\/share\/link?url={URL}","text":"Share on Tumblr"},"pinterest":{"source":"https:\/\/pinterest.com\/pin\/create\/button\/?url={URL}","text":"Share on Pinterest"},"vk":{"source":"https:\/\/vk.com\/share.php?url={URL}","text":"Share on Vk"},"mail":{"source":"mailto:?body={URL}","text":"Share by Email"}},"lightbox_deeplinking":"1","lightbox_path":"vertical","lightbox_post_images":"1","lightbox_animation_speed":"normal","l10n":{"close":"Press Esc to close","enterFullscreen":"Enter Fullscreen (Shift+Enter)","exitFullscreen":"Exit Fullscreen (Shift+Enter)","slideShow":"Slideshow","next":"Next","previous":"Previous"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-lightbox.js.download" id="fusion-lightbox-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-tooltip.js.download" id="fusion-tooltip-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-sharing-box.js.download" id="fusion-sharing-box-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.sticky-kit.js.download" id="jquery-sticky-kit-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-youtube.js.download" id="fusion-youtube-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/vimeoPlayer.js.download" id="vimeo-player-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-general-footer.js.download" id="avada-general-footer-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-quantity.js.download" id="avada-quantity-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-crossfade-images.js.download" id="avada-crossfade-images-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-select.js.download" id="avada-select-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-tabs-widget.js.download" id="avada-tabs-widget-js"></script>
+<script type="text/javascript" id="avada-rev-styles-js-extra">
+/* <![CDATA[ */
+var avadaRevVars = {"avada_rev_styles":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-rev-styles.js.download" id="avada-rev-styles-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-contact-form-7.js.download" id="avada-contact-form-7-js"></script>
+<script type="text/javascript" id="avada-privacy-js-extra">
+/* <![CDATA[ */
+var avadaPrivacyVars = {"name":"privacy_embeds","days":"30","path":"\/","types":[],"defaults":[],"button":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-privacy.js.download" id="avada-privacy-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-alert.js.download" id="fusion-alert-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/awb-off-canvas.js.download" id="awb-off-canvas-js"></script>
+<script type="text/javascript" id="fusion-flexslider-js-extra">
+/* <![CDATA[ */
+var fusionFlexSliderVars = {"status_vimeo":"1","slideshow_autoplay":"1","slideshow_speed":"7000","pagination_video_slide":"","status_yt":"1","flex_smoothHeight":"false"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-flexslider.js.download" id="fusion-flexslider-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-column-legacy.js.download" id="fusion-column-legacy-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/jquery.textillate.js.download" id="jquery-title-textillate-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-title.js.download" id="fusion-title-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-syntax-highlighter.js.download" id="fusion-syntax-highlighter-js"></script>
+<script type="text/javascript" id="fusion-carousel-js-extra">
+/* <![CDATA[ */
+var fusionCarouselVars = {"related_posts_speed":"2500","carousel_speed":"2500"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-carousel.js.download" id="fusion-carousel-js"></script>
+<script type="text/javascript" id="fusion-container-js-extra">
+/* <![CDATA[ */
+var fusionContainerVars = {"content_break_point":"800","container_hundred_percent_height_mobile":"0","is_sticky_header_transparent":"1","hundred_percent_scroll_sensitivity":"450"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-container.js.download" id="fusion-container-js"></script>
+<script type="text/javascript" id="avada-fade-js-extra">
+/* <![CDATA[ */
+var avadaFadeVars = {"page_title_fading":"1","header_position":"top"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-fade.js.download" id="avada-fade-js"></script>
+<script type="text/javascript" id="avada-drop-down-js-extra">
+/* <![CDATA[ */
+var avadaSelectVars = {"avada_drop_down":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-drop-down.js.download" id="avada-drop-down-js"></script>
+<script type="text/javascript" id="avada-to-top-js-extra">
+/* <![CDATA[ */
+var avadaToTopVars = {"status_totop":"desktop_and_mobile","totop_position":"right","totop_scroll_down_only":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-to-top.js.download" id="avada-to-top-js"></script>
+<script type="text/javascript" id="avada-header-js-extra">
+/* <![CDATA[ */
+var avadaHeaderVars = {"header_position":"top","header_sticky":"1","header_sticky_type2_layout":"menu_only","header_sticky_shadow":"1","side_header_break_point":"800","header_sticky_mobile":"1","header_sticky_tablet":"1","mobile_menu_design":"flyout","sticky_header_shrinkage":"1","nav_height":"40","nav_highlight_border":"3","nav_highlight_style":"bar","logo_margin_top":"31px","logo_margin_bottom":"31px","layout_mode":"wide","header_padding_top":"0px","header_padding_bottom":"0px","scroll_offset":"full"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-header.js.download" id="avada-header-js"></script>
+<script type="text/javascript" id="avada-menu-js-extra">
+/* <![CDATA[ */
+var avadaMenuVars = {"site_layout":"wide","header_position":"top","logo_alignment":"left","header_sticky":"1","header_sticky_mobile":"1","header_sticky_tablet":"1","side_header_break_point":"800","megamenu_base_width":"custom_width","mobile_menu_design":"flyout","dropdown_goto":"Go to...","mobile_nav_cart":"Shopping Cart","mobile_submenu_open":"Open submenu of %s","mobile_submenu_close":"Close submenu of %s","submenu_slideout":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-menu.js.download" id="avada-menu-js"></script>
+<script type="text/javascript" id="avada-sidebars-js-extra">
+/* <![CDATA[ */
+var avadaSidebarsVars = {"header_position":"top","header_layout":"v1","header_sticky":"1","header_sticky_type2_layout":"menu_only","side_header_break_point":"800","header_sticky_tablet":"1","sticky_header_shrinkage":"1","nav_height":"40","sidebar_break_point":"800"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-sidebars.js.download" id="avada-sidebars-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/bootstrap.scrollspy.js.download" id="bootstrap-scrollspy-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/avada-scrollspy.js.download" id="avada-scrollspy-js"></script>
+<script type="text/javascript" id="fusion-responsive-typography-js-extra">
+/* <![CDATA[ */
+var fusionTypographyVars = {"site_width":"1170px","typography_sensitivity":"0.54","typography_factor":"1.50","elements":"h1, h2, h3, h4, h5, h6"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-responsive-typography.js.download" id="fusion-responsive-typography-js"></script>
+<script type="text/javascript" id="fusion-scroll-to-anchor-js-extra">
+/* <![CDATA[ */
+var fusionScrollToAnchorVars = {"content_break_point":"800","container_hundred_percent_height_mobile":"0","hundred_percent_scroll_sensitivity":"450"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-scroll-to-anchor.js.download" id="fusion-scroll-to-anchor-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-general-global.js.download" id="fusion-general-global-js"></script>
+<script type="text/javascript" id="fusion-video-js-extra">
+/* <![CDATA[ */
+var fusionVideoVars = {"status_vimeo":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-video.js.download" id="fusion-video-js"></script>
+<script type="text/javascript" src="./Simple Collision Detection in JavaScript - The German Coder_files/fusion-column.js.download" id="fusion-column-js"></script>
+				<script type="text/javascript">
+				jQuery( document ).ready( function() {
+					var ajaxurl = 'https://thegermancoder.com/wp-admin/admin-ajax.php';
+					if ( 0 < jQuery( '.fusion-login-nonce' ).length ) {
+						jQuery.get( ajaxurl, { 'action': 'fusion_login_nonce' }, function( response ) {
+							jQuery( '.fusion-login-nonce' ).html( response );
+						});
+					}
+				});
+								</script>
+						</div>
+
+			<section class="to-top-container to-top-right" aria-labelledby="awb-to-top-label">
+		<a href="https://thegermancoder.com/2019/04/05/simple-collision-detection-in-javascript/#" id="toTop" class="fusion-top-top-link fusion-to-top-active">
+			<span id="awb-to-top-label" class="screen-reader-text">Go to Top</span>
+		</a>
+	</section>
+		
+
+</body></html>
