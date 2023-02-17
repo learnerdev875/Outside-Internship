@@ -29,8 +29,7 @@ const profileStyles = {
 
 Modal.setAppElement("#root");
 
-const NavBar = () => {
-  let subtitle;
+const NavBar = ({ searchTicket, handleSearchTicket }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [notificationModalIsOpen, setNotificationIsOpen] = useState(false);
   const [profileModalIsOpen, setProfileIsOpen] = useState(false);
@@ -41,10 +40,7 @@ const NavBar = () => {
   function openProfileModal() {
     setProfileIsOpen(true);
   }
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = "#f00";
-  }
+  function afterOpenModal() {}
 
   function closeProfileModal() {
     setProfileIsOpen(false);
@@ -61,6 +57,8 @@ const NavBar = () => {
             <input
               type="text"
               style={{ display: showSearch ? "block" : "none" }}
+              value={searchTicket}
+              onChange={handleSearchTicket}
             />
             <button
               className="navbar__button"
