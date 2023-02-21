@@ -1,0 +1,35 @@
+.notification {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #363740;
+    color: #fff;
+    &__text {
+      font-weight: 700;
+    }
+  }
+  &__body {
+    padding: 10px;
+    &__detail {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin-bottom: 10px;
+      &__image {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 0 10%;
+      }
+    }
+  }
+  &__footer {
+    padding-bottom: 10px;
+    &__text {
+      text-align: center;
+      font-weight: 700;
+    }
+  }
+}
