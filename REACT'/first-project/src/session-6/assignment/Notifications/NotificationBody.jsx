@@ -1,8 +1,8 @@
 import React from "react";
-import user1 from "../assets/tom-cruise.png";
-import user2 from "../assets/matt-damon.png";
-import user3 from "../assets/robert-downey.png";
-import user4 from "../assets/christian-bale.png";
+import user1 from "../../../../public/tom-cruise.png";
+import user2 from "../../../../public/matt-damon.png";
+import user3 from "../../../../public/robert-downey.png";
+import user4 from "../../../../public/christian-bale.png";
 import NotificationDetails from "./NotificationDetails";
 
 const notifications = [

@@ -5,16 +5,16 @@ import { AiOutlineBulb } from "react-icons/ai";
 import { IoMdContacts } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { RiArticleLine } from "react-icons/ri";
-import Link from "./Link";
+import SideBarLink from "./SideBarLink";
 const SideBarNav = () => {
   return (
     <div className="sidebar__nav">
-      <Link icon={<AiOutlinePieChart />} text="Overview" />
-      <Link icon={<IoTicketSharp />} text="Tickets" />
-      <Link icon={<AiOutlineBulb />} text="Ideas" />
-      <Link icon={<IoMdContacts />} text="Contacts" />
-      <Link icon={<IoPerson />} text="Agents" />
-      <Link icon={<RiArticleLine />} text="Articles" />
+      <SideBarLink icon={<AiOutlinePieChart />} text="Overview" />
+      <SideBarLink icon={<IoTicketSharp />} text="Tickets" />
+      <SideBarLink icon={<AiOutlineBulb />} text="Ideas" />
+      <SideBarLink icon={<IoMdContacts />} text="Contacts" />
+      <SideBarLink icon={<IoPerson />} text="Agents" />
+      <SideBarLink icon={<RiArticleLine />} text="Articles" />
     </div>
   );
 };

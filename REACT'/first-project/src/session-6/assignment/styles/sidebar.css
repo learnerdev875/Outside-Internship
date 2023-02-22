@@ -17,16 +17,19 @@
 .sidebar__nav {
   font-size: 16px;
   border-bottom: 1px solid #dfe0eb;
-  margin-bottom: 16px;
+  padding-bottom: 16px;
 }
-li {
+.link {
   padding: 20px 24px 20px 32px;
-}
-li a {
   display: flex;
   align-items: center;
   gap: 24px;
 }
+.link:hover {
+  background-color: #9fa2b4;
+  color: #dde2ff;
+}
 .sidebar__additional {
   font-size: 16px;
+  padding-top: 16px;
 }

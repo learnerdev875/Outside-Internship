@@ -6,10 +6,10 @@ import "../styles/ticketsList.scss";
 import Button from "../Button/Button";
 import TicketsListHeader from "./TicketsListHeader";
 import { AiFillDelete } from "react-icons/ai";
-import { SearchKeyContext } from "../../../App";
+import { SearchKeyContext } from "../Dashboard/Dashboard";
 
 const TicketsList = ({
-  users,
+  tickets,
   handleDeleteTicket,
   filterByPriority,
   handleFilterByPriority,
@@ -29,23 +29,23 @@ const TicketsList = ({
           </tr>
         </thead>
         <tbody className="ticketsTable__body">
-          {users
-            .filter((user) => {
+          {tickets
+            ?.filter((ticket) => {
               if (filterByPriority === "all") {
                 return true;
               } else {
-                return user.priority === filterByPriority;
+                return ticket.priority === filterByPriority;
               }
             })
-            .filter((user) =>
-              user.status
+            ?.filter((ticket) =>
+              ticket.status
                 .toLocaleLowerCase()
                 .includes(searchKey.toLocaleLowerCase())
             )
-            .map((user) => (
+            ?.map((ticket) => (
               <TicketsRow
-                user={user}
-                key={user.id}
+                ticket={ticket}
+                key={ticket.id}
                 handleDeleteTicket={handleDeleteTicket}
               />
             ))}
@@ -57,33 +57,33 @@ const TicketsList = ({
 
 export default TicketsList;
 
-const TicketsRow = ({ user, handleDeleteTicket }) => {
+const TicketsRow = ({ ticket, handleDeleteTicket }) => {
   return (
     <tr className="ticketsTable__body__row">
       <td>
         <TicketDetails
-          message={user.status}
-          time={user.days}
-          img={user.imgSrc}
+          message={ticket.status}
+          time={ticket.days}
+          img={ticket.imgSrc}
         />
       </td>
       <td>
-        <CustomerName name={user.customerName} date={user.date} />
+        <CustomerName name={ticket.customerName} date={ticket.date} />
       </td>
       <td>
         <TicketDate
-          date={user.date1}
-          time={user.time}
-          convention={user.convention}
+          date={ticket.date1}
+          time={ticket.time}
+          convention={ticket.convention}
         />
       </td>
       <td>
-        <Button priority={user.priority} />
+        <Button priority={ticket.priority} text={ticket.priority} />
       </td>
       <td>
         <AiFillDelete
           className="ticketsTable__body__row__deleteBtn"
-          onClick={() => handleDeleteTicket(user.id)}
+          onClick={() => handleDeleteTicket(ticket.id)}
         />
       </td>
     </tr>

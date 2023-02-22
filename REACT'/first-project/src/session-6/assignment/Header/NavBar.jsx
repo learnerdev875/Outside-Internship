@@ -1,13 +1,12 @@
 import React, { useState, useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 import { BsBellFill } from "react-icons/bs";
-import ProfileImage from "../assets/profile.png";
+import ProfileImage from "../../../assets/profile.png";
 import "../styles/navbar.scss";
 import Modal from "react-modal";
 import Notification from "../Notifications/Notification";
 import ProfileModal from "../ProfileModal/ProfileModal";
-import { SearchKeyContext } from "../../../App";
-import { SearchKeyUpdateContext } from "../../../App";
+import { SearchKeyContext } from "../Dashboard/Dashboard";
 
 const customStyles = {
   content: {
@@ -35,8 +34,7 @@ const NavBar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [notificationModalIsOpen, setNotificationIsOpen] = useState(false);
   const [profileModalIsOpen, setProfileIsOpen] = useState(false);
-  const searchKey = useContext(SearchKeyContext);
-  const setSearchKey = useContext(SearchKeyUpdateContext);
+  const [searchKey, set] = useContext(SearchKeyContext);
 
   function openNotificationModal() {
     setNotificationIsOpen(true);

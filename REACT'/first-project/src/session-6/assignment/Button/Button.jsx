@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ priority }) => {
+const Button = ({ priority, text }) => {
   return (
     <a
       href="#"
@@ -14,7 +14,7 @@ const Button = ({ priority }) => {
       }}
       className="priority-btn"
     >
-      {priority}
+      {text}
     </a>
   );
 };

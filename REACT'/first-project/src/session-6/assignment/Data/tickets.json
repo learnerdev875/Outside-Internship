@@ -10,7 +10,7 @@
       "time": "6:30",
       "priority": "high",
       "convention": "pm",
-      "imgSrc": "user1"
+      "imgSrc": "tom-cruise.png"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "time": "8:00",
       "priority": "low",
       "convention": "am",
-      "imgSrc": "user2"
+      "imgSrc": "matt-damon.png"
     },
     {
       "id": 3,
@@ -34,7 +34,7 @@
       "time": "7:30",
       "priority": "high",
       "convention": "pm",
-      "imgSrc": "user3"
+      "imgSrc": "robert-downey.png"
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "time": "5:00",
       "priority": "normal",
       "convention": "pm",
-      "imgSrc": "user4"
+      "imgSrc": "christian-bale.png"
     },
     {
       "id": 5,
@@ -58,7 +58,7 @@
       "time": "4:00",
       "priority": "high",
       "convention": "pm",
-      "imgSrc": "user5"
+      "imgSrc": "henry-cavil.png"
     },
     {
       "id": 6,
@@ -70,7 +70,7 @@
       "time": "2:00",
       "priority": "normal",
       "convention": "pm",
-      "imgSrc": "user6"
+      "imgSrc": "chris-evans.png"
     },
     {
       "id": 7,
@@ -82,7 +82,7 @@
       "time": "11:30",
       "priority": "low",
       "convention": "am",
-      "imgSrc": "user7"
+      "imgSrc": "sam-smith.png"
     },
     {
       "id": 8,
@@ -94,7 +94,23 @@
       "time": "1:00",
       "priority": "normal",
       "convention": "pm",
-      "imgSrc": "user8"
+      "imgSrc": "steve-rogers.png"
+    }
+  ],
+  "users": [
+    {
+      "fullName": "Devendra Gurung",
+      "email": "grgdev1998@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 1
+    },
+    {
+      "fullName": "Elon Musk",
+      "email": "elonmusk@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 2
     }
   ]
 }
