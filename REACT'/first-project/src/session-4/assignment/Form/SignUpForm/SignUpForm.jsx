@@ -4,8 +4,6 @@ import FormHeader from "../global/FormHeader";
 import "../global/Form.scss";
 import FormInput from "../global/FormInput";
 import FormButton from "../global/FormButton";
-import axios from "../../Axios/axios";
-import useFetchUsers from "../../hooks/useFetchUsers";
 
 const SignUpForm = () => {
   const [user, setUser] = useState({
@@ -14,7 +12,6 @@ const SignUpForm = () => {
     password: "",
     confirmPassword: "",
   });
-  const { addNewUser } = useFetchUsers();
   //function to handle form input
   const handleInputChange = (e) => {
     setUser((prev) => ({
@@ -26,13 +23,9 @@ const SignUpForm = () => {
   //function to handle submit form
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    addNewUser(user);
-    setUser({
-      fullName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
+    console.log(
+      ` Full Name: ${user.fullName} Email: ${user.email} Password: ${user.password} Confirm Password: ${user.confirmPassword}`
+    );
   };
 
   return (
@@ -79,9 +72,9 @@ const SignUpForm = () => {
           value={user.confirmPassword}
           handleInputChange={handleInputChange}
         />
-        <FormButton text="Log In" />
+        <FormButton />
       </form>
-      <FormFooter type="signup" />
+      <FormFooter />
     </div>
   );
 };

@@ -1,54 +1,37 @@
 import React, { useState } from "react";
+import FormButton from "../global/FormButton";
 import FormFooter from "../global/FormFooter";
 import FormHeader from "../global/FormHeader";
+import "./LoginForm.scss";
 import "../global/Form.scss";
 import FormInput from "../global/FormInput";
-import FormButton from "../global/FormButton";
-import axios from "../../Axios/axios";
-import useFetchUsers from "../../hooks/useFetchUsers";
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const [user, setUser] = useState({
-    fullName: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    rememberMe: false,
   });
-  const { addNewUser } = useFetchUsers();
   //function to handle form input
   const handleInputChange = (e) => {
     setUser((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.name === "rememberMe" ? !prev.rememberMe : e.target.value,
     }));
   };
 
   //function to handle submit form
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    addNewUser(user);
-    setUser({
-      fullName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
+    console.log(
+      `Email: ${user.email} Password: ${user.password} Remember Me: ${user.rememberMe}`
+    );
   };
-
   return (
-    <div className="signupForm form">
-      <FormHeader action="signup" />
+    <div className="loginForm form">
+      <FormHeader action="login" />
       <form className="form__container" onSubmit={handleSubmitForm}>
-        <FormInput
-          type="text"
-          id="fullName"
-          labelName="fullname"
-          placeholder="Fullname"
-          hasIcon={false}
-          additionalLabel={false}
-          value={user.fullName}
-          handleInputChange={handleInputChange}
-        />
         <FormInput
           type="email"
           id="email"
@@ -65,25 +48,24 @@ const SignUpForm = () => {
           labelName="password"
           placeholder="Password"
           hasIcon={true}
-          additionalLabel={false}
+          additionalLabel="Forgot password?"
           value={user.password}
           handleInputChange={handleInputChange}
         />
-        <FormInput
-          type="password"
-          id="confirmPassword"
-          labelName="confirm password"
-          placeholder="Confirm Password"
-          hasIcon={true}
-          additionalLabel={false}
-          value={user.confirmPassword}
-          handleInputChange={handleInputChange}
-        />
+        <div className="form__container__checkbox">
+          <input
+            type="checkbox"
+            name="rememberMe"
+            id="rememberMe"
+            onChange={handleInputChange}
+          />
+          <label htmlFor="rememberMe">Remember me</label>
+        </div>
         <FormButton text="Log In" />
       </form>
-      <FormFooter type="signup" />
+      <FormFooter />
     </div>
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

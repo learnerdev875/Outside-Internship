@@ -1,12 +1,26 @@
 import React from "react";
-import './FormFooter.scss'
+import "./FormFooter.scss";
+import { Link } from "react-router-dom";
 
-const FormFooter = () => {
+const FormFooter = ({ type }) => {
   return (
     <div className="formFooter">
-      <p>
-        Don't have an account? <span className="formFooter__link">Sign up</span>
-      </p>
+      {type === "login" && (
+        <p>
+          Don't have an account?{" "}
+          <Link className="formFooter__link" to="/signup">
+            Sign up
+          </Link>
+        </p>
+      )}
+      {type === "signup" && (
+        <p>
+          Already have an account?{" "}
+          <Link className="formFooter__link" to="/">
+            Login
+          </Link>
+        </p>
+      )}
     </div>
   );
 };

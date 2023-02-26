@@ -1,10 +1,10 @@
 import React from "react";
 import "./FormButton.scss";
 
-const FormButton = ({ text }) => {
+const FormButton = () => {
   return (
     <>
-      <input type="submit" value={text} />
+      <input type="submit" value="Log In" />
     </>
   );
 };
