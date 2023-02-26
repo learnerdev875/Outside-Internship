@@ -43,7 +43,8 @@ const AddTicketForm = ({ addNewTicket }) => {
       date1: "",
       time: "",
       convention: "",
-      imgSrc: "/public/sam-smith.png",
+      imgSrc:
+        "https://s3-alpha-sig.figma.com/img/e0c5/3eef/2ef8b64f13159309a272c7dc0e296197?Expires=1678060800&Signature=XFK6~XnLDVUWD1P1-CcnXxCymuBW9gNHjE~8yHLfwCJpIS6BCqYbKX9TY6Lvc8GkiJH8vBvlT50bnSOUQAlD-f21qhR7w4x4m4fGarDLSjrZqPtl7SJEMgIjY4ti-3e3TYAKAJek~7lymsDd75bck19rfV98Lpb2wxVqNiQQlQBdFO0k1jWOxPXYNPTo9OFojmkdnyCHgfvmxf2X1lDpaFR-i9~7KJ5hghkBZMD4IrZrghioMHaqf6tTJ0L6S3IjLsMRnVw~HUtAZ8HuGWVvszxOUistmprO~akj0vJRUG~vXuUs5lNnqr-IplQBLbL5Pd-kGXe24meYXHcCruoviA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
     });
   }
   return (
