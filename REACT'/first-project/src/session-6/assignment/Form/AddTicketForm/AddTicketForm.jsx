@@ -7,7 +7,7 @@ import FormButton from "../global/FormButton";
 import useFetchTickets from "../../hooks/useFetchTickets";
 import dayjs from "dayjs";
 
-const AddTicketForm = () => {
+const AddTicketForm = ({ addNewTicket }) => {
   const [newTicket, setNewTicket] = useState({
     customerName: "",
     status: "",
@@ -17,10 +17,8 @@ const AddTicketForm = () => {
     date1: "",
     time: "",
     convention: "",
-    imgSrc: "sam-smith.png",
+    imgSrc: "/public/sam-smith.png",
   });
-
-  const { addNewTicket } = useFetchTickets();
 
   function handleInputChange(e) {
     setNewTicket({
@@ -45,7 +43,7 @@ const AddTicketForm = () => {
       date1: "",
       time: "",
       convention: "",
-      imgSrc: "sam-smith.png",
+      imgSrc: "/public/sam-smith.png",
     });
   }
   return (
@@ -77,16 +75,6 @@ const AddTicketForm = () => {
             placeholder="Issue"
           />
         </div>
-        {/* <div className="addTicketForm__container__input">
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={newTicket.date}
-            onChange={handleInputChange}
-          />
-        </div> */}
         <div className="addTicketForm__container__select">
           <label htmlFor="priority">Priority</label>
           <select id="priority" name="priority" onChange={handleInputChange}>

@@ -16,7 +16,7 @@ const FormFooter = ({ type }) => {
       {type === "signup" && (
         <p>
           Already have an account?{" "}
-          <Link className="formFooter__link" to="/login">
+          <Link className="formFooter__link" to="/">
             Login
           </Link>
         </p>

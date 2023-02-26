@@ -7,17 +7,30 @@ import Button from "../Button/Button";
 import TicketsListHeader from "./TicketsListHeader";
 import { AiFillDelete } from "react-icons/ai";
 import { SearchKeyContext } from "../Dashboard/Dashboard";
+import axios from "axios";
 
 const TicketsList = ({
   tickets,
-  handleDeleteTicket,
   filterByPriority,
   handleFilterByPriority,
+  addNewTicket,
+  setTickets,
 }) => {
   const searchKey = useContext(SearchKeyContext);
+  const deleteTicket = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/tickets/${id}`);
+      setTickets(tickets.filter((ticket) => ticket.id !== id));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="usersList">
-      <TicketsListHeader handleFilterByPriority={handleFilterByPriority} />
+      <TicketsListHeader
+        handleFilterByPriority={handleFilterByPriority}
+        addNewTicket={addNewTicket}
+      />
       <table className="ticketsTable">
         <thead className="ticketsTable__heading">
           <tr className="ticketsTable__heading__row">
@@ -46,7 +59,7 @@ const TicketsList = ({
               <TicketsRow
                 ticket={ticket}
                 key={ticket.id}
-                handleDeleteTicket={handleDeleteTicket}
+                deleteTicket={deleteTicket}
               />
             ))}
         </tbody>
@@ -57,7 +70,7 @@ const TicketsList = ({
 
 export default TicketsList;
 
-const TicketsRow = ({ ticket, handleDeleteTicket }) => {
+const TicketsRow = ({ ticket, deleteTicket }) => {
   return (
     <tr className="ticketsTable__body__row">
       <td>
@@ -83,7 +96,7 @@ const TicketsRow = ({ ticket, handleDeleteTicket }) => {
       <td>
         <AiFillDelete
           className="ticketsTable__body__row__deleteBtn"
-          onClick={() => handleDeleteTicket(ticket.id)}
+          onClick={() => deleteTicket(ticket.id)}
         />
       </td>
     </tr>

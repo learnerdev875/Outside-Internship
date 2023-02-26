@@ -10,7 +10,7 @@
       "time": "6:30",
       "priority": "high",
       "convention": "pm",
-      "imgSrc": "tom-cruise.png"
+      "imgSrc": "/public/tom-cruise.png"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "time": "8:00",
       "priority": "low",
       "convention": "am",
-      "imgSrc": "matt-damon.png"
+      "imgSrc": "/public/matt-damon.png"
     },
     {
       "id": 3,
@@ -34,7 +34,7 @@
       "time": "7:30",
       "priority": "high",
       "convention": "pm",
-      "imgSrc": "robert-downey.png"
+      "imgSrc": "/public/robert-downey.png"
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "time": "5:00",
       "priority": "normal",
       "convention": "pm",
-      "imgSrc": "christian-bale.png"
+      "imgSrc": "/public/christian-bale.png"
     },
     {
       "id": 5,
@@ -58,7 +58,7 @@
       "time": "4:00",
       "priority": "high",
       "convention": "pm",
-      "imgSrc": "henry-cavil.png"
+      "imgSrc": "/public/henry-cavil.png"
     },
     {
       "id": 6,
@@ -70,7 +70,7 @@
       "time": "2:00",
       "priority": "normal",
       "convention": "pm",
-      "imgSrc": "chris-evans.png"
+      "imgSrc": "/public/chris-evans.png"
     },
     {
       "id": 7,
@@ -82,7 +82,7 @@
       "time": "11:30",
       "priority": "low",
       "convention": "am",
-      "imgSrc": "sam-smith.png"
+      "imgSrc": "/public/sam-smith.png"
     },
     {
       "id": 8,
@@ -94,7 +94,7 @@
       "time": "1:00",
       "priority": "normal",
       "convention": "pm",
-      "imgSrc": "steve-rogers.png"
+      "imgSrc": "/public/steve-rogers.png"
     }
   ],
   "users": [

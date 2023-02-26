@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import Notification from "../Notifications/Notification";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { SearchKeyContext } from "../Dashboard/Dashboard";
+import { SearchKeyUpdateContext } from "../Dashboard/Dashboard";
 
 const customStyles = {
   content: {
@@ -34,7 +35,8 @@ const NavBar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [notificationModalIsOpen, setNotificationIsOpen] = useState(false);
   const [profileModalIsOpen, setProfileIsOpen] = useState(false);
-  const [searchKey, set] = useContext(SearchKeyContext);
+  const searchKey = useContext(SearchKeyContext);
+  const setSearchKey = useContext(SearchKeyUpdateContext);
 
   function openNotificationModal() {
     setNotificationIsOpen(true);

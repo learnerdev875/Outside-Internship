@@ -9,12 +9,9 @@ export const SearchKeyContext = createContext(null);
 export const SearchKeyUpdateContext = createContext(null);
 
 const Dashboard = () => {
-  const { tickets, setTickets } = useFetchTickets();
+  const { tickets, setTickets, addNewTicket } = useFetchTickets();
   const [searchTicket, setSearchTicket] = useState("");
   const [filterByPriority, setFilterByPriority] = useState("all");
-  const handleDeleteTicket = (id) => {
-    setTickets(tickets.filter((ticket) => ticket.id !== id));
-  };
   const handleFilterByPriority = (e) => {
     setFilterByPriority(e.target.value);
   };
@@ -27,9 +24,10 @@ const Dashboard = () => {
             <NavBar />
             <TicketsList
               tickets={tickets}
-              handleDeleteTicket={handleDeleteTicket}
               filterByPriority={filterByPriority}
               handleFilterByPriority={handleFilterByPriority}
+              addNewTicket={addNewTicket}
+              setTickets={setTickets}
             />
           </SearchKeyUpdateContext.Provider>
         </SearchKeyContext.Provider>

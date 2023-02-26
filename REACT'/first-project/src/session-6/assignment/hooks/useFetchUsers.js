@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../Axios/axios";
+import { toast } from "react-toastify";
 
 export default function useFetchUsers() {
   const [users, setUsers] = useState([]);
@@ -33,6 +34,11 @@ export default function useFetchUsers() {
         `/users?email=${user.email}&password=${user.password}`
       );
       setLoginSuccess(response.data.length);
+      if (response.data.length > 0) {
+        toast.success("You are Successfully Logged In");
+      } else {
+        toast.error("Incorrect Email and Password");
+      }
     } catch (error) {
       console.log(error.message);
     }

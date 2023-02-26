@@ -20,7 +20,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const TicketsListHeader = ({ handleFilterByPriority }) => {
+const TicketsListHeader = ({ handleFilterByPriority, addNewTicket }) => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [showFilter, setShowFilter] = React.useState(false);
@@ -62,7 +62,7 @@ const TicketsListHeader = ({ handleFilterByPriority }) => {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <AddTicketForm />
+          <AddTicketForm addNewTicket={addNewTicket} />
         </Modal>
       </div>
       {showFilter && <Filter handleFilterByPriority={handleFilterByPriority} />}

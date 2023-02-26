@@ -10,7 +10,7 @@ const useFetchTickets = () => {
   const getApiData = async () => {
     try {
       const response = await axios.get("/tickets");
-      setTickets(response.data);
+      setTickets(response.data.sort((a, b) => b.id - a.id));
     } catch (error) {
       setIsError(error.message);
     }
@@ -29,7 +29,13 @@ const useFetchTickets = () => {
     getApiData();
   }, []);
 
-  return { tickets, setTickets, addNewTicket, isAddTicketError, isError };
+  return {
+    tickets,
+    setTickets,
+    addNewTicket,
+    isAddTicketError,
+    isError,
+  };
 };
 
 export default useFetchTickets;

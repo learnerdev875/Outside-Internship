@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormButton from "../global/FormButton";
 import FormFooter from "../global/FormFooter";
 import FormHeader from "../global/FormHeader";
@@ -14,6 +15,7 @@ const LoginForm = () => {
     rememberMe: false,
   });
   const { validateUsers, loginSuccess } = useFetchUsers();
+  const navigate = useNavigate();
   //function to handle form input
   const handleInputChange = (e) => {
     setUser((prev) => ({
@@ -31,7 +33,7 @@ const LoginForm = () => {
   return (
     <>
       {loginSuccess ? (
-        <div style={{ color: "#fff" }}>You are successfully Logged In</div>
+        navigate("/dashboard")
       ) : (
         <div className="loginForm form">
           <FormHeader action="login" />
