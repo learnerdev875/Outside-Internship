@@ -1,0 +1,41 @@
+.singleticket {
+  height: calc(100vh - 100px);
+  &__heading {
+    text-align: center;
+    padding-bottom: 10px;
+    &__image {
+      width: 300px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: 0 10%;
+      border-radius: 50%;
+      padding-bottom: 10px;
+    }
+  }
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    &__title {
+      font-size: 25px;
+      font-weight: 700;
+    }
+    &__info {
+      font-size: 15px;
+      font-weight: 400;
+      max-width: 600px;
+      text-align: center;
+    }
+    &__timestamp {
+      font-size: 12px;
+      font-weight: 600;
+      color: #a4a6b3;
+    }
+    .backBtn {
+      color: #3751ff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+  }
+}

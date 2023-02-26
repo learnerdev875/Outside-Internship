@@ -1,0 +1,116 @@
+.usersList {
+  padding-top: 32px;
+  padding-bottom: 72px;
+  border: 2px solid #e5e5e5;
+  border-radius: 15px;
+  background-color: #fff;
+  .ticketsList {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 32px 48px 32px;
+      position: relative;
+      &__actions {
+        display: flex;
+        gap: 32px;
+        font-size: 14px;
+        &__icon {
+          color: #c5c7cd;
+          font-size: 12px;
+        }
+        &__name {
+          color: #4b506d;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        &--1 {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+        }
+        &--2 {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          cursor: pointer;
+        }
+        &--3 {
+          background-color: #29cc97;
+          color: white;
+          border: none;
+          padding: 10px;
+          border-radius: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .ticketsTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    tr {
+      border-bottom: 1.5px solid #dfe0eb;
+    }
+    &__heading {
+      &__row {
+        th {
+          padding-left: 31px;
+          padding-bottom: 12px;
+          text-align: left;
+          font-size: 14px;
+          color: #9fa2b4;
+        }
+      }
+    }
+    &__body {
+      &__row {
+        &:hover {
+          background-color: #dfe0eb;
+        }
+        td {
+          padding: 24px 31px;
+        }
+        &__deleteBtn {
+          font-size: 24px;
+          color: #c5c7cd;
+          cursor: pointer;
+        }
+      }
+    }
+    &__header {
+      h1 {
+        font-size: 19px;
+        font-weight: 700;
+      }
+    }
+  }
+  .ticket {
+    &-details {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    &-profile {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 0 10%;
+    }
+    &-date,
+    &-status,
+    &-customer {
+      p:nth-child(1) {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      p:nth-child(2) {
+        font-size: 12px;
+        color: #c5c7cd;
+        font-weight: 400;
+      }
+    }
+  }
+}
