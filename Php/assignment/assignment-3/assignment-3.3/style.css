@@ -1,0 +1,32 @@
+table,
+th,
+td {
+  border: 1px solid black;
+}
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  padding: 20px 5px;
+}
+th {
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+}
+.edit_btn {
+  background-color: #0d6efd;
+  margin-right: 15px;
+}
+.delete_btn {
+  background-color: #dc3545;
+}
+.add_btn {
+  background-color: #0d6efd;
+}
