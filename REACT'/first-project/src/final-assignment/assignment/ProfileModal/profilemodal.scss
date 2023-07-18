@@ -1,0 +1,18 @@
+.profile__modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #363740;
+  color: #fff;
+  &__activity {
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    color: #fff;
+    &:hover {
+      background-color: #9fa2b4;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./session-1/assignment/styles/reset.css";
+import "./final-assignment/assignment/styles/reset.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

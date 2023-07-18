@@ -1,0 +1,36 @@
+.overview {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    height: calc(100vh - 98px);
+    &__status {
+      background-color: #fff;
+      text-align: center;
+      padding: 24px 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid #dfe0eb;
+      max-height: 134px;
+      h1 {
+        color: #9fa2b4;
+        font-size: 19px;
+        font-weight: 700;
+        padding-bottom: 12;
+      }
+      p {
+        font-weight: 700;
+        font-size: 40px;
+      }
+      &:hover {
+        border: 1px solid #3751ff;
+        h1 {
+          color: #3751ff;
+        }
+        p {
+          color: #3751ff;
+        }
+      }
+    }
+  }
+}

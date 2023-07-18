@@ -1,48 +1,69 @@
-import { useState } from "react";
-import NavBar from "./session-1/assignment/Header/NavBar";
-import SideBar from "./session-1/assignment/Sidebar/SideBar";
-import "./session-1/assignment/styles/main.css";
-import TicketsList from "./session-1/assignment/TicketsList/TicketsList";
-import Tickets from "./session-1/assignment/Data/Tickets";
-import LoginForm from "./session-1/assignment/Form/LoginForm/LoginForm";
-import SignUpForm from "./session-1/assignment/Form/SignUpForm/SignUpForm";
+import { useState, createContext, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./final-assignment/assignment/Dashboard/Dashboard";
+import LoginForm from "./final-assignment/assignment/Form/LoginForm/LoginForm";
+import SignUpForm from "./final-assignment/assignment/Form/SignUpForm/SignUpForm";
+import "./final-assignment/assignment/styles/main.css";
+import NoMatch from "./final-assignment/assignment/NoMatch/NoMatch";
+import Overview from "./final-assignment/assignment/Overview/Overview";
+import TicketsList from "./final-assignment/assignment/TicketsList/TicketsList";
+import SingleTicket from "./final-assignment/assignment/TicketsList/SingleTicket";
+import ProtectedRoute from "./final-assignment/assignment/ProtectedRoute/ProtectedRoute";
 
+export const LoggedInContext = createContext(null);
 function App() {
-  const [users, setUsers] = useState(Tickets);
-  const [searchTicket, setSearchTicket] = useState("");
-  const [filterByPriority, setFilterByPriority] = useState("all");
-  const handleDeleteTicket = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
-  const handleSearchTicket = (e) => {
-    setSearchTicket(e.target.value);
-  };
-  const handleFilterByPriority = (e) => {
-    setFilterByPriority(e.target.value);
-  };
+  const [loggedInInfo, setLoggedInInfo] = useState(() => {
+    return (
+      JSON.parse(localStorage.getItem("Logged_In_Info")) || {
+        status: "false",
+        username: "",
+      }
+    );
+  });
+
+  useEffect(() => {
+    localStorage.setItem("Logged_In_Info", JSON.stringify(loggedInInfo));
+  }, [loggedInInfo]);
   return (
-    //dashboard UI
-    <div className="App1">
-      <SideBar />
-      <div className="right-container">
-        <NavBar
-          searchTicket={searchTicket}
-          handleSearchTicket={handleSearchTicket}
-        />
-        <TicketsList
-          users={users}
-          handleDeleteTicket={handleDeleteTicket}
-          searchTicket={searchTicket}
-          filterByPriority={filterByPriority}
-          handleFilterByPriority={handleFilterByPriority}
-        />
-      </div>
-    </div>
-    //Signup and Login Form UI. Have not done routing so manually have to comment and uncomment
-    // <div className="App">
-    //   <LoginForm />
-    //   <SignUpForm />
-    // </div>
+    <LoggedInContext.Provider value={[loggedInInfo, setLoggedInInfo]}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="App">
+                <LoginForm />
+              </div>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <div className="App">
+                <SignUpForm />
+              </div>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute isLoggedIn={loggedInInfo.status}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Overview />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="tickets" element={<TicketsList />} />
+            <Route path="tickets/:ticketId" element={<SingleTicket />} />
+          </Route>
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
+        <ToastContainer />
+      </BrowserRouter>
+    </LoggedInContext.Provider>
   );
 }
 
