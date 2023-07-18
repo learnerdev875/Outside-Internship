@@ -1,11 +1,11 @@
-import user1 from "../../../assets/tom-cruise.png";
-import user2 from "../../../assets/matt-damon.png";
-import user3 from "../../../assets/robert-downey.png";
-import user4 from "../../../assets/christian-bale.png";
-import user5 from "../../../assets/henry-cavil.png";
-import user6 from "../../../assets/chris-evans.png";
-import user7 from "../../../assets/sam-smith.png";
-import user8 from "../../../assets/steve-rogers.png";
+import user1 from "../assets/images/tom-cruise.png";
+import user2 from "../assets/images/matt-damon.png";
+import user3 from "../assets/images/robert-downey.png";
+import user4 from "../assets/images/christian-bale.png";
+import user5 from "../assets/images/henry-cavil.png";
+import user6 from "../assets/images/chris-evans.png";
+import user7 from "../assets/images/sam-smith.png";
+import user8 from "../assets/images/steve-rogers.png";
 const Tickets = [
   {
     id: 1,

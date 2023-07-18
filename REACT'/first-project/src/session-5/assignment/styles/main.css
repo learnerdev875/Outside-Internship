@@ -1,8 +1,0 @@
-.App {
-  /* display: grid;
-  grid-template-columns: 255px 1fr; */
-  background-color: #363740;
-  height: 100vh;
-  display: grid;
-  place-content: center;
-}
